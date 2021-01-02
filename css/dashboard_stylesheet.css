@@ -80,13 +80,17 @@ body {
 
 .dashboard-meas {
     height: 300px;
-    width: 801px;
+    width: 865px;
     margin-left: 20px;
     margin-top: 15px;
     padding-top: 15px;
 
     background-color: white !important;
     border-radius: 15px;
+}
+
+.dashboard-meas .donutCharts {
+    margin-top: 15px;
 }
 
 .dashboard-meas .dashboard-meas-heading {
@@ -110,14 +114,14 @@ body {
     color: #636D76;
 }
 
-.dashboard-meas .chart-container {
+.dashboard-meas .donutCharts .chart-container {
     display: inline-block;
     height: 350px;
     width: 350px;
     padding-top: 15px;
 }
 
-.dashboard-meas .chart-container .text {
+.dashboard-meas .donutCharts .chart-container .text {
     font-family: Calibre, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-weight: 700;
     font-size: 18px;
