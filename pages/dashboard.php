@@ -23,5 +23,9 @@
         </div>
         -->
     <div class="divider"></div>
+    <div class="dashboard-meas">
+        <h3 class="dashboard-meas-heading">Latest Observation</h3>
+        <p class="dashboard-meas-latest-data" id="latestData">Updated lalalalla ago</p>
+    </div>
 </body>
 </html>
