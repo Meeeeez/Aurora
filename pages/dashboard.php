@@ -28,10 +28,25 @@
     <div class="dashboard-meas">
         <h3 class="dashboard-meas-heading">Latest Observation</h3>
         <p class="dashboard-meas-latest-data" id="latestData">Updated lalalalla ago</p>
-        <div class="chart-container">
-            <canvas id="myChart" height="130"></canvas>
-            <script src="../js/pieChart.js"></script>
-            <p class="text">TEMPERATURE</p>
+        <br>
+        <div>
+            <div class="chart-container" style="margin-left: -60px;">
+                <canvas id="tempChart" height="130"></canvas>
+                <script src="../js/tempChart.js"></script>
+                <p class="text" style="margin: 12px 0 0 95px">TEMPERATURE</p>
+            </div>
+
+            <div class="chart-container" style="margin-left: -100px;">
+                <canvas id="presChart" height="130"></canvas>
+                <script src="../js/presChart.js"></script>
+                <p class="text" style="margin: 12px 0 0 120px">PRESSURE</p>
+            </div>
+
+            <div class="chart-container" style="margin-left: -100px;">
+                <canvas id="humChart" height="130"></canvas>
+                <script src="../js/humChart.js"></script>
+                <p class="text" style="margin: 12px 0 0 120px">PRESSURE</p>
+            </div>
         </div>
     </div>
 </body>

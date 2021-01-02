@@ -1,6 +1,6 @@
-let ctx = document.getElementById('myChart');
+let ctxTemp = document.getElementById('tempChart');
 
-let myChart = new Chart(ctx, {
+let tempChart = new Chart(ctxTemp, {
     type: 'doughnut',
     data: {
         labels: ['Red', 'White'],
