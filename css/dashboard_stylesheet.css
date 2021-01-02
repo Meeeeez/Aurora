@@ -109,3 +109,20 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: #636D76;
 }
+
+.dashboard-meas .chart-container {
+    width: 350px;
+    margin-left: -60px;
+    padding-top: 15px;
+}
+
+.dashboard-meas .chart-container .text {
+    font-family: Calibre, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 700;
+    font-size: 18px;
+    color: black;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 4px;
+    margin: 12px 0 0 95px;
+}
