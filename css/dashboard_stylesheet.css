@@ -79,6 +79,7 @@ body {
 }
 
 .dashboard-meas {
+    float: left;
     height: 300px;
     width: 865px;
     margin-left: 20px;
@@ -87,6 +88,12 @@ body {
 
     background-color: white !important;
     border-radius: 15px;
+}
+
+.dashboard-meas::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .dashboard-meas .donutCharts {
@@ -129,4 +136,19 @@ body {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: 4px;
+}
+
+.map {
+    float: left;
+    height: 315px;
+    width: 480px;
+    margin-left: 20px;
+    margin-top: 15px;
+    border-radius: 15px;
+}
+
+.map::after {
+    content: "";
+    display: table;
+    clear: both;
 }

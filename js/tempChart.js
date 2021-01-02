@@ -8,11 +8,11 @@ let tempChart = new Chart(ctxTemp, {
             label: '# of Votes',
             data: [-23, 40],
             backgroundColor: [
-                'rgb(208, 138, 255)',
+                'rgb(60, 188, 195)',
                 'rgb(235, 237, 239)',
             ],
             borderColor: [
-                'rgb(208, 138, 255)',
+                'rgb(60, 188, 195)',
                 'rgb(235, 237, 239)',
             ],
             borderWidth: 1
@@ -25,7 +25,7 @@ let tempChart = new Chart(ctxTemp, {
         elements: {
             center: {
                 text: '12°C',
-                color: '#d08aff', // Default is #000000
+                color: '#3cbcc3', // Default is #000000
                 fontStyle: 'Calibri', // Default is Arial
                 sidePadding: 20, // Default is 20 (as a percentage)
                 minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.

@@ -8,11 +8,11 @@ let presHum = new Chart(ctxHum, {
             label: '# of Votes',
             data: [86.4, 100],
             backgroundColor: [
-                'rgb(208, 138, 255)',
+                'rgb(67,137,69)',
                 'rgb(235, 237, 239)',
             ],
             borderColor: [
-                'rgb(208, 138, 255)',
+                'rgb(67,137,69)',
                 'rgb(235, 237, 239)',
             ],
             borderWidth: 1
@@ -24,8 +24,8 @@ let presHum = new Chart(ctxHum, {
         },
         elements: {
             center: {
-                text: '86.4',
-                color: '#d08aff', // Default is #000000
+                text: '86.4%',
+                color: '#438945', // Default is #000000
                 fontStyle: 'Calibri', // Default is Arial
                 sidePadding: 20, // Default is 20 (as a percentage)
                 minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.

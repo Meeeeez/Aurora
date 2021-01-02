@@ -6,13 +6,13 @@ let presChart = new Chart(ctxPres, {
         labels: ['Red', 'White'],
         datasets: [{
             label: '# of Votes',
-            data: [943.6, 3000],
+            data: [943.6, 1100],
             backgroundColor: [
-                'rgb(208, 138, 255)',
+                'rgb(235,166,63)',
                 'rgb(235, 237, 239)',
             ],
             borderColor: [
-                'rgb(208, 138, 255)',
+                'rgb(235,166,63)',
                 'rgb(235, 237, 239)',
             ],
             borderWidth: 1
@@ -25,7 +25,7 @@ let presChart = new Chart(ctxPres, {
         elements: {
             center: {
                 text: '943.6',
-                color: '#d08aff', // Default is #000000
+                color: '#EBA63F', // Default is #000000
                 fontStyle: 'Calibri', // Default is Arial
                 sidePadding: 20, // Default is 20 (as a percentage)
                 minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
