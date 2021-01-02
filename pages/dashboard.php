@@ -14,6 +14,14 @@
         <h1 class="station-location">VILLNÖSS</h1>
         <p class="station-location-further">Bressanone, Italy</p>
         <a class="station-coordinates-time" href="https://www.google.com/maps/search/46.642,+11.675">46.64, 11.67</a>
+        <p class="station-local-time-label">Local Time: </p>
+        <p class="station-coordinates-time" id="time"></p>
+        <script src="../js/get_localTime.js"></script>
     </div>
+    <!--<div class="measSystem-active-info">
+            <div class="active-badge">ACTIVE</div>
+        </div>
+        -->
+    <div class="divider"></div>
 </body>
 </html>
