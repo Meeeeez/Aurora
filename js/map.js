@@ -13,8 +13,9 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 let circle = L.circle([46.642,11.678], {
-    color: 'red',
-    fillColor: '#f03',
+    color: "#E40C2B",
+    fillColor: '#E40C2B',
     fillOpacity: 0.5,
-    radius: 350
+    radius: 350,
 }).addTo(map);
+circle.bindPopup("The weather station is somewhere here");
