@@ -1,3 +1,9 @@
+<!--
+     TODO: updated lalalala ago
+     TODO: active file auslesen / wenn der sensor länger als der mess intervall nicht gelesen hat ist er inaktiv
+     TODO: metric/imperial systems
+ -->
+
 <?php
     $measFile = fopen("Z:/measurements.txt", "r") or die("Unable to open file!");
     $data = fread($measFile,filesize("Z:/measurements.txt"));
@@ -16,6 +22,7 @@
         data_jsonDecoded[i] = JSON.parse(data_arr[i]);
         i++;
     }
+
 </script>
 
 <!doctype html>

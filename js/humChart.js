@@ -6,7 +6,7 @@ let presHum = new Chart(ctxHum, {
         labels: ['Red', 'White'],
         datasets: [{
             label: '# of Votes',
-            data: [86.4, 100],
+            data: [data_jsonDecoded[arr_length - 1].hum_MEAS, 100],
             backgroundColor: [
                 'rgb(67,137,69)',
                 'rgb(235, 237, 239)',
@@ -24,7 +24,7 @@ let presHum = new Chart(ctxHum, {
         },
         elements: {
             center: {
-                text: '86.4%',
+                text: data_jsonDecoded[arr_length - 1].hum_MEAS + '%',
                 color: '#438945', // Default is #000000
                 fontStyle: 'Calibri', // Default is Arial
                 sidePadding: 20, // Default is 20 (as a percentage)

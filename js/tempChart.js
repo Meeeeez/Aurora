@@ -1,14 +1,12 @@
 let ctxTemp = document.getElementById('tempChart');
 
-
-
 let tempChart = new Chart(ctxTemp, {
     type: 'doughnut',
     data: {
         labels: ['Red', 'White'],
         datasets: [{
             label: '# of Votes',
-            data: [-23, 40],
+            data: [data_jsonDecoded[arr_length - 1].temp_MEAS, 40],
             backgroundColor: [
                 'rgb(60, 188, 195)',
                 'rgb(235, 237, 239)',
@@ -26,7 +24,7 @@ let tempChart = new Chart(ctxTemp, {
         },
         elements: {
             center: {
-                text: '12°C',
+                text: data_jsonDecoded[arr_length - 1].temp_MEAS + '°C',
                 color: '#3cbcc3', // Default is #000000
                 fontStyle: 'Calibri', // Default is Arial
                 sidePadding: 20, // Default is 20 (as a percentage)

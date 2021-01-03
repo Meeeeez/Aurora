@@ -6,7 +6,7 @@ let presChart = new Chart(ctxPres, {
         labels: ['Red', 'White'],
         datasets: [{
             label: '# of Votes',
-            data: [943.6, 1100],
+            data: [data_jsonDecoded[arr_length - 1].press_MEAS, 1100],
             backgroundColor: [
                 'rgb(235,166,63)',
                 'rgb(235, 237, 239)',
@@ -24,7 +24,7 @@ let presChart = new Chart(ctxPres, {
         },
         elements: {
             center: {
-                text: '943.6',
+                text: data_jsonDecoded[arr_length - 1].press_MEAS.toString(),
                 color: '#EBA63F', // Default is #000000
                 fontStyle: 'Calibri', // Default is Arial
                 sidePadding: 20, // Default is 20 (as a percentage)
