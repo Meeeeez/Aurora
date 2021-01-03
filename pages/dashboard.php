@@ -1,11 +1,21 @@
 <?php
     $measFile = fopen("Z:/measurements.txt", "r") or die("Unable to open file!");
     $data = fread($measFile,filesize("Z:/measurements.txt"));
+    $data = explode("\n", $data);
     fclose($measFile);
+    $i = 0;
 ?>
+
 <script type="text/javascript">
-    let x = '<?php echo json_encode($data)?>';
-    alert(x);
+    let arr_length = '<?php echo count($data)?>' - 1;
+    let data_arr = [], data_jsonDecoded = [];
+    let i = 0;
+
+    while (i < arr_length){
+        data_arr[i] = '<?php echo $data[$i]?>';
+        data_jsonDecoded[i] = JSON.parse(data_arr[i]);
+        i++;
+    }
 </script>
 
 <!doctype html>
