@@ -1,5 +1,7 @@
 let ctxTemp = document.getElementById('tempChart');
 
+
+
 let tempChart = new Chart(ctxTemp, {
     type: 'doughnut',
     data: {

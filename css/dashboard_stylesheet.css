@@ -1,3 +1,8 @@
+html, body {        /* Horizontales scrollen verhinden */
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background-color: #EBEDEF;
 }

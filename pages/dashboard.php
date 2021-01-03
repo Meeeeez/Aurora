@@ -1,3 +1,13 @@
+<?php
+    $measFile = fopen("Z:/measurements.txt", "r") or die("Unable to open file!");
+    $data = fread($measFile,filesize("Z:/measurements.txt"));
+    fclose($measFile);
+?>
+<script type="text/javascript">
+    let x = '<?php echo json_encode($data)?>';
+    alert(x);
+</script>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,17 +15,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="refresh" content="1500">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard_stylesheet.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/> <!-- leaflet karten integration -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    <script type="text/javascript" src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>   <!-- chart.js diagramme -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>   <!-- chart.js diagramme -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
 </head>
 <body>
     <div class="station-info" onload="updateTime()">
@@ -24,7 +35,7 @@
         <a class="station-coordinates-time" href="https://www.google.com/maps/search/46.642,+11.675">46.64, 11.67</a>
         <p class="station-local-time-label">Local Time: </p>
         <p class="station-coordinates-time" id="time"></p>
-        <script src="../js/get_localTime.js"></script>
+        <script type="text/javascript" src="../js/get_localTime.js"></script>
     </div>
     <!--<div class="measSystem-active-info">
             <div class="active-badge">ACTIVE</div>
@@ -37,24 +48,24 @@
         <div class="donutCharts">
             <div class="chart-container" style="margin-left: -3px;">
                 <canvas id="tempChart" height="130"></canvas>
-                <script src="../js/tempChart.js"></script>
+                <script type="text/javascript" src="../js/tempChart.js"></script>
                 <p class="text" style="margin: 12px 0 0 92px">TEMPERATURE</p>
             </div>
 
             <div class="chart-container" style="margin-left: -97px;">
                 <canvas id="presChart" height="130"></canvas>
-                <script src="../js/presChart.js"></script>
+                <script type="text/javascript" src="../js/presChart.js"></script>
                 <p class="text" style="margin: 12px 0 0 119px">PRESSURE</p>
             </div>
 
             <div class="chart-container" style="margin-left: -100px;">
                 <canvas id="humChart" height="130"></canvas>
-                <script src="../js/humChart.js"></script>
+                <script type="text/javascript" src="../js/humChart.js"></script>
                 <p class="text" style="margin: 12px 0 0 118px">HUMIDITY</p>
             </div>
         </div>
     </div>
     <div id="stationMap" class="map"></div>
-    <script src="../js/map.js"></script>
+    <script type="text/javascript" src="../js/map.js"></script>
 </body>
 </html>
