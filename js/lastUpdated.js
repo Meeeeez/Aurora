@@ -45,9 +45,10 @@ function timeDiffCalc(now, then) {
     }
 }
 
+/* funktion die aus monat 1 monat 01 macht
 function formatDateWithZero(toFormat){
     if(toFormat.length === 1){
         toFormat = '0' + toFormat;
         return toFormat;
     }
-}
+}*/

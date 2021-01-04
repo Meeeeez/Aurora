@@ -57,6 +57,9 @@
     <p class="station-local-time-label">Local Time: </p>
     <p class="station-coordinates-time" id="time"></p>
     <script type="text/javascript" src="../js/get_localTime.js"></script>
+
+    <button type="button" onclick="" class="metricBtn" id="metricBtn">Metric</button>
+    <button type="button" onclick="" class="imperialBtn" id="imperialBtn">Imperial</button>
 </div>
 
 <div class="divider"></div>
