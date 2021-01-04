@@ -1,5 +1,4 @@
 <!--
-     TODO: if document.get updated länger als 1 stund her -> inactive label
      TODO: metric/imperial systems
      TODO: mehr charts
  -->
