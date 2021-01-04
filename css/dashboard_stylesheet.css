@@ -1,3 +1,7 @@
+html {              /* Unebenheiten ausbessern*/
+    zoom: 112.5%;
+}
+
 html, body {        /* Horizontales scrollen verhinden */
     max-width: 100%;
     overflow-x: hidden;
@@ -35,7 +39,23 @@ body {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #636D76;
+    display: inline-block;
     margin: 0 0 5px;
+}
+
+.station-info .measSystem-active-info {
+    display: inline-block;
+}
+
+.station-info .measSystem-active-info .active-badge{
+    background-color: #EBEDEF;
+    font-family: Calibre, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 500;
+    font-size: 16px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-bottom: 2px;
+    border-radius: 10px;
 }
 
 .station-info .station-coordinates-time {
@@ -59,24 +79,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: #636D76;
 }
-/*später
-.measSystem-active-info {
 
-}
 
-.measSystem-active-info .active-badge{
-    background-color: #EBEDEF;
-    color: #1ebe1e;
-    border: 2px solid #1ebe1e;
-    font-family: Calibre, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-weight: 500;
-    font-size: 18px;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding-bottom: 2px;
-    border-radius: 10px;
-}
-*/
 .divider {
     background-color: #DDE1E4;
     height: 2px;

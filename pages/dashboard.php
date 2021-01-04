@@ -1,15 +1,15 @@
 <!--
-     TODO: updated lalalala ago
-     TODO: active file auslesen / wenn der sensor länger als der mess intervall nicht gelesen hat ist er inaktiv
+     TODO: if document.get updated länger als 1 stund her -> inactive label
      TODO: metric/imperial systems
+     TODO: mehr charts
  -->
 
 <?php
-$measFile = fopen("Z:/measurements.txt", "r") or die("Unable to open file!");
-$data = fread($measFile,filesize("Z:/measurements.txt"));
-$data = explode("\n", $data);
-fclose($measFile);
-$i = 0;
+    $measFile = fopen("Z:/measurements.txt", "r") or die("Unable to open file!");
+    $data = fread($measFile,filesize("Z:/measurements.txt"));
+    $data = explode("\n", $data);
+    fclose($measFile);
+    $i = 0;
 ?>
 
 <script type="text/javascript">
@@ -50,21 +50,23 @@ $i = 0;
 <div class="station-info">
     <h1 class="station-location">VILLNÖSS</h1>
     <p class="station-location-further">Bressanone, Italy</p>
+    <div class="measSystem-active-info">
+        <div class="active-badge" id="activityBadge"></div>
+    </div>
+    <br>
     <a class="station-coordinates-time">46.64, 11.67</a>
     <p class="station-local-time-label">Local Time: </p>
     <p class="station-coordinates-time" id="time"></p>
     <script type="text/javascript" src="../js/get_localTime.js"></script>
 </div>
-<!--<div class="measSystem-active-info">
-        <div class="active-badge">ACTIVE</div>
-    </div>
-    -->
+
 <div class="divider"></div>
 <div class="dashboard-meas">
     <h3 class="dashboard-meas-heading">Latest Observation</h3>
 
     <p class="dashboard-meas-latest-data" id="latestData"></p>
     <script type="text/javascript" src="../js/lastUpdated.js"></script>
+    <script type="text/javascript" src="../js/stationActivity.js"></script>
 
     <div class="donutCharts">
         <div class="chart-container" style="margin-left: -3px;">
