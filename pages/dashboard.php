@@ -1,6 +1,4 @@
 <!--
-     TODO: metric/imperial systems + buttons schianer mochen
-     TODO: active/inactive button schian mochn
      TODO: mehr charts
  -->
 

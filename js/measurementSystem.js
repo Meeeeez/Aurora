@@ -2,7 +2,7 @@ let imperialBtn = document.getElementById("imperialBtn");
 let metricBtn = document.getElementById("metricBtn");
 
 function switchToMetric(){
-    metricBtn.style.marginLeft = "905px";
+    metricBtn.style.marginLeft = "900px";
     metricBtn.style.backgroundColor = "white";
     metricBtn.style.color = "#262626";
     metricBtn.style.border = "2.5px solid #262626";
@@ -16,6 +16,7 @@ function switchToMetric(){
     metricBtn.style.display = "inline-block";
     metricBtn.style.fontSize = "14px";
 
+    imperialBtn.style.padding = "1px 11.5px 1px";
     imperialBtn.style.backgroundColor = "#EBEDEF";
     imperialBtn.style.color = "#262626";
     imperialBtn.style.border = "none";
@@ -48,6 +49,7 @@ function switchToImperial(){
     imperialBtn.style.display = "inline-block";
     imperialBtn.style.fontSize = "14px";
 
+    metricBtn.style.padding = "1px 11.5px 1px";
     metricBtn.style.backgroundColor = "#EBEDEF";
     metricBtn.style.color = "#262626";
     metricBtn.style.border = "none";
@@ -59,9 +61,9 @@ function switchToImperial(){
     metricBtn.style.display = "inline-block";
     metricBtn.style.fontSize = "14px";
 
-    presChart.options.elements.center.text = (data_jsonDecoded[arr_length - 1].press_MEAS / 33.864).toFixed(2).toString() + "in";
+    presChart.options.elements.center.text = (data_jsonDecoded[arr_length - 1].press_MEAS / 33.864).toFixed(1).toString() + "in";
     presChart.update();
 
-    tempChart.options.elements.center.text = ((data_jsonDecoded[arr_length - 1].temp_MEAS * 9/5) + 32).toFixed(2).toString() + "°F";
+    tempChart.options.elements.center.text = ((data_jsonDecoded[arr_length - 1].temp_MEAS * 9/5) + 32).toFixed(1).toString() + "°F";
     tempChart.update();
 }
