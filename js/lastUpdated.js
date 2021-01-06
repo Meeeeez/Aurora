@@ -38,7 +38,7 @@ function timeDiffCalc(now, then) {
 
     if(diffMin.toString() === "0"){
         return "Updated " + diffSec + " seconds ago";
-    }else if(diffMin >= 60) {
+    }else if(parseInt(diffMin.toString()) > 60 || parseInt(diffMin.toString()) < 0) {
         return "Updated more than an hour ago";
     }else {
         return "Updated " + diffMin + " minutes ago";

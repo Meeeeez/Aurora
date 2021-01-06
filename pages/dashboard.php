@@ -1,5 +1,6 @@
 <!--
-     TODO: metric/imperial systems
+     TODO: metric/imperial systems + buttons schianer mochen
+     TODO: active/inactive button schian mochn
      TODO: mehr charts
  -->
 
@@ -58,8 +59,9 @@
     <p class="station-coordinates-time" id="time"></p>
     <script type="text/javascript" src="../js/get_localTime.js"></script>
 
-    <button type="button" onclick="" class="metricBtn" id="metricBtn">Metric</button>
-    <button type="button" onclick="" class="imperialBtn" id="imperialBtn">Imperial</button>
+    <button type="button" onclick="switchToMetric()" class="metricBtn" id="metricBtn">METRIC</button>
+    <button type="button" onclick="switchToImperial()" class="imperialBtn" id="imperialBtn">IMPERIAL</button>
+    <script src="../js/measurementSystem.js"></script>
 </div>
 
 <div class="divider"></div>
@@ -74,19 +76,19 @@
         <div class="chart-container" style="margin-left: -3px;">
             <canvas id="tempChart" height="130"></canvas>
             <script type="text/javascript" src="../js/tempChart.js"></script>
-            <p class="text" style="margin: 12px 0 0 92px">TEMPERATURE</p>
+            <p class="text" style="margin: 12px 0 0 92px; color: #262626">TEMPERATURE</p>
         </div>
 
         <div class="chart-container" style="margin-left: -97px;">
             <canvas id="presChart" height="130"></canvas>
             <script type="text/javascript" src="../js/presChart.js"></script>
-            <p class="text" style="margin: 12px 0 0 119px">PRESSURE</p>
+            <p class="text" style="margin: 12px 0 0 119px; color: #262626">PRESSURE</p>
         </div>
 
         <div class="chart-container" style="margin-left: -100px;">
             <canvas id="humChart" height="130"></canvas>
             <script type="text/javascript" src="../js/humChart.js"></script>
-            <p class="text" style="margin: 12px 0 0 118px">HUMIDITY</p>
+            <p class="text" style="margin: 12px 0 0 118px; color: #262626">HUMIDITY</p>
         </div>
     </div>
 </div>
