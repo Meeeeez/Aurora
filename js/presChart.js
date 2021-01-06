@@ -24,7 +24,7 @@ let presChart = new Chart(ctxPres, {
         },
         elements: {
             center: {
-                text: data_jsonDecoded[arr_length - 1].press_MEAS.toString(),
+                text: data_jsonDecoded[arr_length - 1].press_MEAS.toString() + "mb",
                 color: '#EBA63F', // Default is #000000
                 fontStyle: 'Calibri', // Default is Arial
                 sidePadding: 20, // Default is 20 (as a percentage)

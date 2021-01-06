@@ -22,7 +22,6 @@
         data_jsonDecoded[i] = JSON.parse(data_arr[i]);
         i++;
     }
-
 </script>
 
 <!doctype html>

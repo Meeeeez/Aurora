@@ -1,6 +1,5 @@
 let imperialBtn = document.getElementById("imperialBtn");
 let metricBtn = document.getElementById("metricBtn");
-let measSystem;
 
 function switchToMetric(){
     metricBtn.style.marginLeft = "905px";
@@ -28,7 +27,11 @@ function switchToMetric(){
     imperialBtn.style.display = "inline-block";
     imperialBtn.style.fontSize = "14px";
 
-    measSystem = "metric";
+    presChart.options.elements.center.text = data_jsonDecoded[arr_length - 1].press_MEAS.toString() + "mb";
+    presChart.update();
+
+    tempChart.options.elements.center.text = data_jsonDecoded[arr_length - 1].temp_MEAS.toString() + "°C";
+    tempChart.update();
 }
 
 function switchToImperial(){
@@ -56,5 +59,9 @@ function switchToImperial(){
     metricBtn.style.display = "inline-block";
     metricBtn.style.fontSize = "14px";
 
-    measSystem = "imperial";
+    presChart.options.elements.center.text = (data_jsonDecoded[arr_length - 1].press_MEAS / 33.864).toFixed(2).toString() + "in";
+    presChart.update();
+
+    tempChart.options.elements.center.text = ((data_jsonDecoded[arr_length - 1].temp_MEAS * 9/5) + 32).toFixed(2).toString() + "°F";
+    tempChart.update();
 }
