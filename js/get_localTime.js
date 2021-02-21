@@ -9,5 +9,5 @@ function updateTime() {
     }
 
     document.getElementById("time").innerHTML = d.getHours() + ":" + min;
-    setTimeout(updateTime, 5000)
+    setInterval(updateTime, 5000);
 }

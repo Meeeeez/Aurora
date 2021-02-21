@@ -3,7 +3,9 @@
  -->
 
 <?php
-    $measFile = fopen("Z:/measurements.txt", "r") or die("Unable to open file!");
+    error_reporting(E_ERROR | E_PARSE);
+
+    $measFile = fopen("Z:/measurements.txt", "r") or die("<h1 style='margin-left: 420px'>Looks like you're not connected to a RasPi...</h1>");
     $data = fread($measFile,filesize("Z:/measurements.txt"));
     $data = explode("\n", $data);
     fclose($measFile);
@@ -46,7 +48,7 @@
 <body>
 <div class="station-info">
     <h1 class="station-location">VILLNÖSS</h1>
-    <p class="station-location-further">Bressanone, Italy</p>
+    <p class="station-location-further">Bolzano, Italy</p>
     <div class="measSystem-active-info">
         <div class="active-badge" id="activityBadge"></div>
     </div>
