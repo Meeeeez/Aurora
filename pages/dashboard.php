@@ -1,5 +1,5 @@
 <!--
-     TODO: mehr charts
+     TODO: - mehr charts
  -->
 
 <?php
@@ -49,18 +49,11 @@
 <div class="station-info">
     <h1 class="station-location">VILLNÖSS</h1>
     <p class="station-location-further">Bolzano, Italy</p>
-    <div class="measSystem-active-info">
-        <div class="active-badge" id="activityBadge"></div>
-    </div>
-    <br>
     <a class="station-coordinates-time">46.64, 11.67</a>
     <p class="station-local-time-label">Local Time: </p>
     <p class="station-coordinates-time" id="time"></p>
+    <div class="active-badge" id="activityBadge"></div>
     <script type="text/javascript" src="../js/get_localTime.js"></script>
-
-    <button type="button" onclick="switchToMetric()" class="metricBtn" id="metricBtn">METRIC</button>
-    <button type="button" onclick="switchToImperial()" class="imperialBtn" id="imperialBtn">IMPERIAL</button>
-    <script src="../js/measurementSystem.js"></script>
 </div>
 
 <div class="divider"></div>
