@@ -90,7 +90,7 @@ body {
     height: 300px;
     width: 865px;
     margin-left: 20px;
-    margin-top: 15px;
+    margin-top: 25px;
     padding-top: 15px;
 
     background-color: white !important;
@@ -150,7 +150,7 @@ body {
     height: 315px;
     width: 480px;
     margin-left: 20px;
-    margin-top: 15px;
+    margin-top: 25px;
     border-radius: 15px;
 }
 
@@ -158,4 +158,11 @@ body {
     content: "";
     display: table;
     clear: both;
+}
+
+.dashboard-lineChart {
+    height: 300px;
+    width: 865px;
+    background-color: white;
+    float: left;
 }

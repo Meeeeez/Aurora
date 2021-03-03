@@ -5,7 +5,7 @@ let presHum = new Chart(ctxHum, {
     data: {
         labels: ['Hum', ''],
         datasets: [{
-            label: '# of Votes',
+            label: '',
             data: [data_jsonDecoded[arr_length - 1].hum_MEAS, 100],
             backgroundColor: [
                 'rgb(67,137,69)',

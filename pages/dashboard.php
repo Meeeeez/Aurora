@@ -1,6 +1,9 @@
 <!--
      TODO: - mehr charts
            - auf datenbank umsteigen
+
+     DB:    - location, temp, hum, pres, time, ...
+            - username, password, measSystem,
  -->
 
 <?php
@@ -28,12 +31,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="../sources/favicon.png"/>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="refresh" content="1500">
-    <title>Dashboard</title>
+    <title>Dashboard - Villnöss</title>
     <link rel="stylesheet" href="../css/dashboard_stylesheet.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -68,24 +73,30 @@
     <div class="donutCharts">
         <div class="chart-container" style="margin-left: -3px;">
             <canvas id="tempChart" height="130"></canvas>
-            <script type="text/javascript" src="../js/tempChart.js"></script>
+            <script type="text/javascript" src="../js/DonutCharts/tempChart.js"></script>
             <p class="text" style="margin: 12px 0 0 92px; color: #262626">TEMPERATURE</p>
         </div>
 
         <div class="chart-container" style="margin-left: -97px;">
             <canvas id="presChart" height="130"></canvas>
-            <script type="text/javascript" src="../js/presChart.js"></script>
+            <script type="text/javascript" src="../js/DonutCharts/presChart.js"></script>
             <p class="text" style="margin: 12px 0 0 119px; color: #262626">PRESSURE</p>
         </div>
 
         <div class="chart-container" style="margin-left: -100px;">
             <canvas id="humChart" height="130"></canvas>
-            <script type="text/javascript" src="../js/humChart.js"></script>
+            <script type="text/javascript" src="../js/DonutCharts/humChart.js"></script>
             <p class="text" style="margin: 12px 0 0 118px; color: #262626">HUMIDITY</p>
         </div>
     </div>
 </div>
 <div id="stationMap" class="map"></div>
 <script type="text/javascript" src="../js/map.js"></script>
+
+<div class="dashboard-meas" style="width: 1365px; height: 320px">
+    <canvas id="lineChart" height="80" width="350"></canvas>
+    <script type="text/javascript" src="../js/lineChart.js"></script>
+</div>
+
 </body>
 </html>
