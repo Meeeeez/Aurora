@@ -1,5 +1,6 @@
 <!--
      TODO: - mehr charts
+           - auf datenbank umsteigen
  -->
 
 <?php

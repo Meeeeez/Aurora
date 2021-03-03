@@ -3,7 +3,7 @@ let ctxTemp = document.getElementById('tempChart');
 let tempChart = new Chart(ctxTemp, {
     type: 'doughnut',
     data: {
-        labels: ['Red', 'White'],
+        labels: ['Temp', ''],
         datasets: [{
             label: '# of Votes',
             data: [data_jsonDecoded[arr_length - 1].temp_MEAS, 40],

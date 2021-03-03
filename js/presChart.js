@@ -3,7 +3,7 @@ let ctxPres = document.getElementById('presChart');
 let presChart = new Chart(ctxPres, {
     type: 'doughnut',
     data: {
-        labels: ['Red', 'White'],
+        labels: ['Press', ''],
         datasets: [{
             label: '# of Votes',
             data: [data_jsonDecoded[arr_length - 1].press_MEAS, 1100],

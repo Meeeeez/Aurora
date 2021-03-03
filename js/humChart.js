@@ -3,7 +3,7 @@ let ctxHum = document.getElementById('humChart');
 let presHum = new Chart(ctxHum, {
     type: 'doughnut',
     data: {
-        labels: ['Red', 'White'],
+        labels: ['Hum', ''],
         datasets: [{
             label: '# of Votes',
             data: [data_jsonDecoded[arr_length - 1].hum_MEAS, 100],
