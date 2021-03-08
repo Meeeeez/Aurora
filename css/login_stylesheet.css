@@ -1,0 +1,86 @@
+html, body {margin: 0; height: 100%; overflow: hidden}
+
+.imageContainer {
+    float: left;
+    width: 50%;
+}
+
+.imageContainer::after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+.image {
+    margin-left: -400px;
+    margin-top: -100px;
+}
+
+.loginPage {
+    width: 50%;
+    float: right;
+
+}
+
+.loginPage::after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+.loginContainer {
+    margin: 180px 0 0 180px;
+}
+
+.loginPrompt {
+    font-family: Calibre, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 700;
+    margin-bottom: 50px;
+    font-size: 40px;
+    color: #262626;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.inputLabel {
+    font-family: Calibre, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 500;
+    font-size: 20px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #262626;
+}
+
+.loginTextfield {
+    border: none;
+    border-bottom: 2px solid #bdc0c1;
+    outline-width: 0;
+    width: 500px;
+    font-size: 26px;
+    font-family: Calibre, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.loginButton {
+    outline-width: 0;
+    cursor: pointer;
+    background-color: #3ABA50;
+    color: white;
+    width: 130px;
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 500;
+    font-family: Calibre, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-right: 20px;
+}
+
+.loginButton:hover {
+    background-color: #29a744;
+}
+

@@ -6,15 +6,7 @@
             - username, password, measSystem,
  -->
 
-<?php
-    error_reporting(E_ERROR | E_PARSE);
 
-    $measFile = fopen("Z:/measurements.txt", "r") or die("<h1 style='margin-left: 420px'>Looks like you're not connected to a RasPi...</h1>");
-    $data = fread($measFile,filesize("Z:/measurements.txt"));
-    $data = explode("\n", $data);
-    fclose($measFile);
-    $i = 0;
-?>
 
 <script type="text/javascript">
     let arr_length = '<?php echo count($data)?>' - 1;
