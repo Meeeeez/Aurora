@@ -19,12 +19,12 @@
         <div style="display: inline-block">
             <label class="inputLabel" for="signupPassword">Password</label>
             <br>
-            <input class="loginTextfield" id="signupPassword" type="text" style="margin: 10px 50px 40px 0; width: 250px">
+            <input class="loginTextfield" id="signupPassword" type="password" style="margin: 10px 50px 40px 0; width: 250px">
         </div>
         <div style="display: inline-block">
             <label class="inputLabel" for="signupVerifyPassword">Verify Password</label>
             <br>
-            <input class="loginTextfield" id="signupVerifyPassword" type="text" style="margin: 10px 0 40px 0; width: 250px">
+            <input class="loginTextfield" id="signupVerifyPassword" type="password" style="margin: 10px 0 40px 0; width: 250px">
         </div>
         <br>
         <label class="inputLabel">Preferred Unit of Measurement</label>
