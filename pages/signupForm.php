@@ -27,7 +27,7 @@
             <input onkeyup="checkIfPasswordsMatch()" class="loginTextfield" id="signupVerifyPassword" type="password" style="margin: 10px 0 40px 0; width: 250px" required>
         </div>
         <br>
-        <label class="inputLabel">Preferred Unit of Measurement</label>
+        <label class="inputLabel">Preferred Measurement System</label>
         <br>
         <input style="margin-top: 20px" class="radioSignup" name="preferredMeasUnit" id="radioMetric" type="radio" value="metric" required>
         <label style="font-weight: 450; padding-top: 20px" class="inputLabel" for="radioMetric">Metric</label>

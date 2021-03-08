@@ -1,3 +1,11 @@
+<script>
+    /*
+        TODO: - schauen ob es die email schon gibt bei erstellen eines kontos
+     */
+</script>
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
