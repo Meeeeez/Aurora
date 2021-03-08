@@ -1,8 +1,13 @@
 <div class="loginContainer" style="margin-left: 160px">
     <h1 class="loginHeading">Log in to your Account</h1>
     <form method="post" style="display: inline">
-        <label class="inputLabel" for="loginName">Email</label><br><input class="loginTextfield" id="loginName" type="text" style="margin: 10px 0 40px 0"> <br>
-        <label class="inputLabel" for="loginPassword">Password</label><br><input class="loginTextfield" id="loginPassword" type="password" style="margin: 10px 0 40px 0">
+        <label class="inputLabel" for="loginName">Email</label>
+        <br>
+        <input class="loginTextfield" id="loginName" type="text" style="margin: 10px 0 40px 0" required>
+        <br>
+        <label class="inputLabel" for="loginPassword">Password</label>
+        <br>
+        <input class="loginTextfield" id="loginPassword" type="password" style="margin: 10px 0 40px 0" required>
         <input class="loginButton" type="submit" value="LOG IN">
     </form>
     <form action="loginPage.php?page=signup" method="post" style="display: inline">
