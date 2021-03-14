@@ -1,6 +1,6 @@
 <div class="loginContainer" style="margin-left: 160px">
     <h1 class="loginHeading">Log in to your Account</h1>
-    <form method="post" style="display: inline">
+    <form method="post" style="display: inline">        <!-- an datenbank schicken -->
         <label class="inputLabel" for="loginName">Email</label>
         <br>
         <input class="loginTextfield" id="loginName" type="text" style="margin: 10px 0 40px 0" required>
