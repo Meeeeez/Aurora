@@ -13,19 +13,23 @@
         $password = md5($_POST['password']);
         $preferredMeasUnit = $_POST['preferredMeasUnit'];
 
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $passwordDB);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
-            $conn->exec($sql);
-            $_SESSION['measUnit'] = $preferredMeasUnit;
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<script>alert('Invalid email format')</script>";
+        }else {
+            try {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $passwordDB);
+                // set the PDO error mode to exception
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
+                $conn->exec($sql);
+                $_SESSION['measUnit'] = $preferredMeasUnit;
 
-            header('Location: dashboard.php');  //redirect to dashboard
-        } catch(PDOException $e) {
-            echo "<script>alert('This email is already in use. Please try again.')</script>";
+                header('Location: dashboard.php');  //redirect to dashboard
+            } catch(PDOException $e) {
+                echo "<script>alert('This email is already in use. Please try again.')</script>";
+            }
+            $conn = null;
         }
-        $conn = null;
     }
 ?>
 

@@ -1,5 +1,6 @@
 <!--
      TODO: - mehr charts
+           - zwischen wetterstationen wechseln (vlt a homepage)
  -->
 
 <?php
