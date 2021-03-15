@@ -47,5 +47,5 @@
     <form action="loginPage.php?page=signup" method="post" style="display: inline">
         <button type="submit" class="loginButton" style="border: 3px solid #3ABA50; background-color: white; color: #3ABA50; font-weight: 600" onmouseleave="this.style.color='#3ABA50'; this.style.borderColor='#3ABA50'" onmouseover="this.style.color='#29a744'; this.style.borderColor='#29a744'">SIGN UP</button>
     </form>
-    <a style="color: #3ABA50; margin-left: 0" onmouseenter="this.style.color = '#29A744'" onmouseleave="this.style.color = '#3ABA50'" class="inputLabel" href="dashboard.php">Guest Login</a>
+    <a style="color: #3ABA50; margin-left: 0" onclick="<?php $_SESSION['measUnit'] = "metric" ?>" onmouseenter="this.style.color = '#29A744'" onmouseleave="this.style.color = '#3ABA50'" class="inputLabel" href="dashboard.php">Guest Login</a>
 </div>
