@@ -18,7 +18,7 @@
             $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
             $conn->exec($sql);
         } catch(PDOException $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            echo "<script>alert('This email is already in use. Please try again.')</script>";
         }
         $conn = null;
     }
