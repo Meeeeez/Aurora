@@ -1,9 +1,5 @@
 <!--
      TODO: - mehr charts
-           - auf datenbank umsteigen
-
-     DB:    - location, temp, hum, pres, time, ...
-            - username, password, measSystem,
  -->
 
 <?php

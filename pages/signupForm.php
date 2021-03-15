@@ -41,19 +41,19 @@
 
     <script type="text/javascript">
         function checkIfPasswordsMatch(){
-            let signupPassword = document.getElementById("signupPassword").value;
-            let signupVerifyPassword = document.getElementById("signupVerifyPassword").value;
+            let signupPassword = document.getElementById("signupPassword");
+            let signupVerifyPassword = document.getElementById("signupVerifyPassword");
             let sendButton = document.getElementById("loginButton");
             let errorMessage = document.getElementById("errorPassword");
 
             console.log("Original: " + signupPassword);
             console.log("Verify: " + signupVerifyPassword);
 
-            if(signupPassword !== signupVerifyPassword){
+            if(signupPassword.value !== signupVerifyPassword.value){
                 sendButton.disabled = true;
                 errorMessage.innerHTML = "Passwords don't match!";
                 sendButton.style.backgroundColor = "#d2d2d2";
-            }else if(signupPassword === signupVerifyPassword) {
+            }else if(signupPassword.value === signupVerifyPassword.value) {
                 sendButton.disabled = false;
                 errorMessage.innerHTML = "";
                 sendButton.style.backgroundColor = "#3ABA50";
