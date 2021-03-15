@@ -24,6 +24,21 @@
     } else {
         echo "<script>alert('Error: No Data in Database')</script>";
     }
+
+    if(isset($_SESSION['measUnit'])){
+        if($_SESSION['measUnit'] == "imperial"){
+            $temperatureMeas = ($temperatureMeas * 9/5) + 32;
+            $pressureMeas = round($pressureMeas * 0.0295301, 2);
+
+            $upperLimitPresChart = 32;
+            $tempString = $temperatureMeas . "°F";
+            $pressString = $pressureMeas . "in";
+        }elseif ($_SESSION['measUnit'] == "metric"){
+            $upperLimitPresChart = 1100;
+            $tempString = $temperatureMeas . "°C";
+            $pressString = $pressureMeas . "mb";
+        }
+    }
 ?>
 
 <!doctype html>
@@ -113,13 +128,6 @@
             }
         }
 
-        /* funktion die aus monat 1 monat 01 macht
-        function formatDateWithZero(toFormat){
-            if(toFormat.length === 1){
-                toFormat = '0' + toFormat;
-                return toFormat;
-            }
-        }*/
     </script>
     <script type="text/javascript" src="../js/stationActivity.js"></script>
 
@@ -129,6 +137,8 @@
             <script type="text/javascript">
                 let temperatureMeas = "<?php echo $temperatureMeas ?>";
                 let ctxTemp = document.getElementById('tempChart');
+                let tempString = '<?php echo $tempString ?>';
+
                 let tempChart = new Chart(ctxTemp, {
                     type: 'doughnut',
                     data: {
@@ -153,7 +163,7 @@
                         },
                         elements: {
                             center: {
-                                text: temperatureMeas + '°C',
+                                text: tempString,
                                 color: '#3cbcc3', // Default is #000000
                                 fontStyle: 'Calibri', // Default is Arial
                                 sidePadding: 20, // Default is 20 (as a percentage)
@@ -258,6 +268,8 @@
             <canvas id="presChart" height="130"></canvas>
             <script type="text/javascript">
                 let pressureMeas = "<?php echo $pressureMeas ?>";
+                let pressureLimit = "<?php echo $upperLimitPresChart ?>";
+                let pressureString = '<?php echo $pressString ?>'
                 let ctxPres = document.getElementById('presChart');
 
                 let presChart = new Chart(ctxPres, {
@@ -266,7 +278,7 @@
                         labels: ['Press', ''],
                         datasets: [{
                             label: '# of Votes',
-                            data: [pressureMeas, 1100],
+                            data: [pressureMeas, pressureLimit],
                             backgroundColor: [
                                 'rgb(235,166,63)',
                                 'rgb(235, 237, 239)',
@@ -284,7 +296,7 @@
                         },
                         elements: {
                             center: {
-                                text: pressureMeas.toString() + "mb",
+                                text: pressureString,
                                 color: '#EBA63F', // Default is #000000
                                 fontStyle: 'Calibri', // Default is Arial
                                 sidePadding: 20, // Default is 20 (as a percentage)

@@ -20,7 +20,7 @@
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                $_SESSION['username'] = $row['firstName'];
+                $_SESSION['firstName'] = $row['firstName'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['measUnit'] = $row['measurementUnit'];
                 header("Location: dashboard.php");

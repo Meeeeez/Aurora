@@ -5,6 +5,8 @@
     $dbname = "WeatherWebApp";
 
     if(isset($_POST['submit'])){
+        session_start();
+
         $firstName = $_POST['firstName'];
         $lastName = $_POST['firstName'];
         $email = $_POST['email'];
@@ -17,6 +19,8 @@
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
             $conn->exec($sql);
+            $_SESSION['measUnit'] = $preferredMeasUnit;
+
             header('Location: dashboard.php');  //redirect to dashboard
         } catch(PDOException $e) {
             echo "<script>alert('This email is already in use. Please try again.')</script>";
