@@ -17,6 +17,7 @@
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
             $conn->exec($sql);
+            header('Location: dashboard.php');  //redirect to dashboard
         } catch(PDOException $e) {
             echo "<script>alert('This email is already in use. Please try again.')</script>";
         }
@@ -73,9 +74,6 @@
             let signupVerifyPassword = document.getElementById("signupVerifyPassword");
             let sendButton = document.getElementById("loginButton");
             let errorMessage = document.getElementById("errorPassword");
-
-            console.log("Original: " + signupPassword);
-            console.log("Verify: " + signupVerifyPassword);
 
             if(signupPassword.value !== signupVerifyPassword.value){
                 sendButton.disabled = true;

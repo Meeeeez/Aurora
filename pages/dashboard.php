@@ -3,14 +3,14 @@
  -->
 
 <?php
-    $conn = new mysqli("weatherwebapp-db.cikkod1lareu.us-east-1.rds.amazonaws.com", "user", "UserPassword123!", "WeatherWebApp");
+    $conn2 = new mysqli("weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com", "user", "UserPassword123!", "WeatherWebApp");
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    if ($conn2->connect_error) {
+        die("Connection failed: " . $conn2->connect_error);
     }
     $sql = "SELECT * FROM TMeasurement ORDER BY measurementID DESC LIMIT 1;";
-    $result = $conn->query($sql);
-    $conn->close();
+    $result = $conn2->query($sql);
+    $conn2->close();
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
