@@ -1,25 +1,53 @@
+<?php
+    $servername = "weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com";
+    $username = "login/signup";
+    $passwordDB = "Login/SingupUserPassword123!";
+    $dbname = "WeatherWebApp";
+
+    if(isset($_POST['submit'])){
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['firstName'];
+        $email = $_POST['email'];
+        $password = md5($_POST['password']);
+        $preferredMeasUnit = $_POST['preferredMeasUnit'];
+
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $passwordDB);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
+            $conn->exec($sql);
+        } catch(PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+    }
+?>
+
+
+
 <div class="loginContainer" style="margin: 30px 0 0 135px">
     <h1 class="loginHeading">Create an Account</h1>
-    <form method="post" style="display: inline">
+    <form action="" method="POST" style="display: inline">
         <div style="display: inline-block">
             <label class="inputLabel" for="signupFirstName">First Name</label>
             <br>
-            <input class="loginTextfield" id="signupFirstName" type="text" style="margin: 10px 50px 40px 0; width: 250px" required>
+            <input name="firstName" class="loginTextfield" id="signupFirstName" type="text" style="margin: 10px 50px 40px 0; width: 250px" required>
         </div>
         <div style="display: inline-block">
             <label class="inputLabel" for="signupLastName">Last Name</label>
             <br>
-            <input class="loginTextfield" id="signupLastName" type="text" style="margin: 10px 0 40px 0; width: 250px" required>
+            <input name="lastName" class="loginTextfield" id="signupLastName" type="text" style="margin: 10px 0 40px 0; width: 250px" required>
         </div>
         <br>
         <label class="inputLabel" for="signupEmail">Email</label>
         <br>
-        <input class="loginTextfield" id="signupEmail" type="text" style="margin: 10px 0 40px 0; width: 560px" required>
+        <input name="email" class="loginTextfield" id="signupEmail" type="text" style="margin: 10px 0 40px 0; width: 560px" required>
         <br>
         <div style="display: inline-block">
             <label class="inputLabel" for="signupPassword">Password</label>
             <br>
-            <input class="loginTextfield" id="signupPassword" type="password" style="margin: 10px 50px 40px 0; width: 250px" required>
+            <input name="password" class="loginTextfield" id="signupPassword" type="password" style="margin: 10px 50px 40px 0; width: 250px" required>
         </div>
         <div style="display: inline-block">
             <label class="inputLabel" for="signupVerifyPassword">Verify Password</label>
@@ -35,7 +63,7 @@
         <input class="radioSignup" name="preferredMeasUnit" id="radioImperial" type="radio" value="imperial" required>
         <label style="font-weight: 450; padding-bottom: 10px" class="inputLabel" for="radioImperial">Imperial</label>
         <br>
-        <input id="loginButton" style="width: 220px; margin-top: 20px; display: inline-block" class="loginButton" type="submit" value="CREATE ACCOUNT">
+        <button name="submit" id="loginButton" style="width: 220px; margin-top: 20px; display: inline-block" class="loginButton" type="submit">CREATE ACCOUNT</button>
         <p id="errorPassword" style="display: inline-block"></p>
     </form>
 
