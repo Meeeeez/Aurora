@@ -3,6 +3,8 @@
  -->
 
 <?php
+    session_start();
+
     $conn2 = new mysqli("weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com", "user", "UserPassword123!", "WeatherWebApp");
 
     if ($conn2->connect_error) {
@@ -20,7 +22,7 @@
             $dateMeas = $row["dateTime"];
         }
     } else {
-        echo "0 results";
+        echo "<script>alert('Error: No Data in Database')</script>";
     }
 ?>
 
@@ -302,7 +304,7 @@
 
         <div class="chart-container" style="margin-left: -100px;">
             <canvas id="humChart" height="130"></canvas>
-            <script type="text/javascript"">
+            <script type="text/javascript">
                 let humidityMeas = "<?php echo $humidityMeas ?>";
                 let ctxHum = document.getElementById('humChart');
 
@@ -343,7 +345,6 @@
                         cutoutPercentage: 65
                     }
                 });
-
             </script>
             <p class="text" style="margin: 12px 0 0 118px; color: #262626">HUMIDITY</p>
         </div>

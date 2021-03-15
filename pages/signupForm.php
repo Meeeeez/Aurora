@@ -33,17 +33,17 @@
         <div style="display: inline-block">
             <label class="inputLabel" for="signupFirstName">First Name</label>
             <br>
-            <input name="firstName" class="loginTextfield" id="signupFirstName" type="text" style="margin: 10px 50px 40px 0; width: 250px" required>
+            <input name="firstName" placeholder="Max" class="loginTextfield" id="signupFirstName" type="text" style="margin: 10px 50px 40px 0; width: 250px" required>
         </div>
         <div style="display: inline-block">
             <label class="inputLabel" for="signupLastName">Last Name</label>
             <br>
-            <input name="lastName" class="loginTextfield" id="signupLastName" type="text" style="margin: 10px 0 40px 0; width: 250px" required>
+            <input name="lastName" placeholder="Mustermann" class="loginTextfield" id="signupLastName" type="text" style="margin: 10px 0 40px 0; width: 250px" required>
         </div>
         <br>
         <label class="inputLabel" for="signupEmail">Email</label>
         <br>
-        <input name="email" class="loginTextfield" id="signupEmail" type="text" style="margin: 10px 0 40px 0; width: 560px" required>
+        <input name="email" placeholder="example@mail.net" class="loginTextfield" id="signupEmail" type="text" style="margin: 10px 0 40px 0; width: 560px" required>
         <br>
         <div style="display: inline-block">
             <label class="inputLabel" for="signupPassword">Password</label>
