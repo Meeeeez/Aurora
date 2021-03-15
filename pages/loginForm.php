@@ -22,6 +22,7 @@
             while($row = $result->fetch_assoc()) {
                 $_SESSION['username'] = $row['firstName'];
                 $_SESSION['email'] = $row['email'];
+                $_SESSION['measUnit'] = $row['measurementUnit'];
                 header("Location: dashboard.php");
             }
         } else {
