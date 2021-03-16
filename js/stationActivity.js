@@ -5,8 +5,8 @@ function checkIfActive(){
 
     if(document.getElementById("latestData").innerHTML === "Updated more than an hour ago"){
         badge.innerHTML = "INACTIVE";
-        badge.style.color = "#E40C2B";
-        badge.style.border = "2.5px solid #E40C2B";
+        badge.style.color = "#ff2e63";
+        badge.style.border = "2.5px solid #ff2e63";
         badge.style.marginLeft = "860px";
         badge.style.fontFamily = "font-family: Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"";
         badge.style.letterSpacing = "1px";

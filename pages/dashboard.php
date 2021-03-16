@@ -288,11 +288,11 @@
                                 label: '# of Votes',
                                 data: [pressureMeas, pressureLimit],
                                 backgroundColor: [
-                                    'rgb(235,166,63)',
+                                    'rgb(37,42,52)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderColor: [
-                                    'rgb(235,166,63)',
+                                    'rgb(37,42,52)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderWidth: 1
@@ -305,7 +305,7 @@
                             elements: {
                                 center: {
                                     text: pressureString,
-                                    color: '#EBA63F', // Default is #000000
+                                    color: '#252a34', // Default is #000000
                                     fontStyle: 'Calibri', // Default is Arial
                                     sidePadding: 20, // Default is 20 (as a percentage)
                                     minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
@@ -336,11 +336,11 @@
                                 label: '',
                                 data: [humidityMeas, 100],
                                 backgroundColor: [
-                                    'rgb(67,137,69)',
+                                    'rgb(255,46,99)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderColor: [
-                                    'rgb(67,137,69)',
+                                    'rgb(255,46,99)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderWidth: 1
@@ -353,7 +353,7 @@
                             elements: {
                                 center: {
                                     text: humidityMeas + '%',
-                                    color: '#438945', // Default is #000000
+                                    color: '#ff2e63', // Default is #000000
                                     fontStyle: 'Calibri', // Default is Arial
                                     sidePadding: 20, // Default is 20 (as a percentage)
                                     minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
@@ -389,7 +389,7 @@
                     splittedArr[i] = dateArr[i].split(" ");
                 }
 
-                let myLineChart = new Chart(ctxLineTemp, {
+                let myLineChartTemp = new Chart(ctxLineTemp, {
                     type:"line",
                     data: {
                         labels:[splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
@@ -397,7 +397,7 @@
                             label:"Todays Temperature (last 10h)",
                             data:[temperatureArr[0], temperatureArr[1], temperatureArr[2], temperatureArr[3], temperatureArr[4], temperatureArr[5], temperatureArr[6], temperatureArr[7], temperatureArr[8], temperatureArr[9]],
                             fill:false,
-                            borderColor:"rgb(75, 192, 192)",
+                            borderColor:"rgb(8,217,214)",
                             lineTension:0.1
                         }]
                     },
@@ -411,7 +411,32 @@
         <div class="lineChart-container">
             <canvas style="margin-left: 20px" id="lineChartPres" height="85" width="350"></canvas>
             <script type="text/javascript">
+                let ctxLinePres = document.getElementById("lineChartPres");
+                dateArr = '<?php echo json_encode($dateMeas) ?>';
+                let pressureArr = '<?php echo json_encode($pressureMeas)?>';
+                splittedArr = [];
 
+                pressureArr = JSON.parse(pressureArr);
+                dateArr = JSON.parse(dateArr);
+
+                for (let i = 0; i < dateArr.length; i++){
+                    splittedArr[i] = dateArr[i].split(" ");
+                }
+
+                let myLineChartPres = new Chart(ctxLinePres, {
+                    type:"line",
+                    data: {
+                        labels:[splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
+                        datasets:[{
+                            label:"Todays barometric Pressure (last 10h)",
+                            data:[pressureArr[0], pressureArr[1], pressureArr[2], pressureArr[3], pressureArr[4], pressureArr[5], pressureArr[6], pressureArr[7], pressureArr[8], pressureArr[9]],
+                            fill:false,
+                            borderColor:"rgb(37,42,52)",
+                            lineTension:0.1
+                        }]
+                    },
+                    options: {}
+                });
             </script>
         </div>
     </div>
