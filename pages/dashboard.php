@@ -379,16 +379,19 @@
             <script type="text/javascript">
                 let ctxLine = document.getElementById("lineChart");
                 let dateArr = '<?php echo json_encode($dateMeas) ?>';
-                let temp = 0
                 dateArr = JSON.parse(dateArr);
-                alert(dateArr);
+                let splittedArr = [];
 
-                //datum splitten und dann unten statt 8:00 einfügen
+                //TODO: datum splitten und dann unten statt 8:00 einfügen
+
+                for (let i = 0; i < dateArr.length; i++){
+                    splittedArr[i] = dateArr[i].split(" ");
+                }
 
                 let myLineChart = new Chart(ctxLine, {
                     type:"line",
                     data: {
-                        labels:["8:00","8:00","8:00","8:00","8:00","8:00","8:00","8:00","8:00","8:00"],
+                        labels:[splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
                         datasets:[{
                             label:"Todays Temperature",
                             data:[32,31,29,25,21,26,27,28,29],
