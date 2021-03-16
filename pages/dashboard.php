@@ -37,8 +37,8 @@
             $upperLimitPresChart = 32 - $pressureMeas[$counter - 1];
             $upperLimitTempChart = 134 - $temperatureMeas[$counter - 1];
 
-            $tempString = $temperatureMeas . "°F";
-            $pressString = $pressureMeas . "in";
+            $tempString = $temperatureMeas[$counter - 1] . "°F";
+            $pressString = $pressureMeas[$counter - 1] . "in";
         }elseif ($_SESSION['measUnit'] == "metric"){
             $upperLimitPresChart = 1183 - $pressureMeas[$counter - 1];
             $upperLimitTempChart = 57 - $temperatureMeas[$counter - 1];
@@ -375,9 +375,9 @@
 
     <div class="dashboard-meas" style="width: 1365px; height: 320px">
         <div class="lineChart-container">
-            <canvas style="margin-left: 20px" id="lineChart" height="85" width="350"></canvas>
+            <canvas style="margin-left: 20px" id="lineChartTemp" height="85" width="350"></canvas>
             <script type="text/javascript">
-                let ctxLine = document.getElementById("lineChart");
+                let ctxLineTemp = document.getElementById("lineChartTemp");
                 let dateArr = '<?php echo json_encode($dateMeas) ?>';
                 let temperatureArr = '<?php echo json_encode($temperatureMeas)?>';
                 let splittedArr = [];
@@ -389,7 +389,7 @@
                     splittedArr[i] = dateArr[i].split(" ");
                 }
 
-                let myLineChart = new Chart(ctxLine, {
+                let myLineChart = new Chart(ctxLineTemp, {
                     type:"line",
                     data: {
                         labels:[splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
@@ -401,16 +401,17 @@
                             lineTension:0.1
                         }]
                     },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
-                    }
+                    options: {}
                 });
+            </script>
+        </div>
+    </div>
+
+    <div class="dashboard-meas" style="width: 1365px; height: 320px">
+        <div class="lineChart-container">
+            <canvas style="margin-left: 20px" id="lineChartPres" height="85" width="350"></canvas>
+            <script type="text/javascript">
+
             </script>
         </div>
     </div>
