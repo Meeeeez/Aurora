@@ -13,23 +13,20 @@
         $password = md5($_POST['password']);
         $preferredMeasUnit = $_POST['preferredMeasUnit'];
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "<script>alert('Invalid email format')</script>";
-        }else {
-            try {
-                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $passwordDB);
-                // set the PDO error mode to exception
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
-                $conn->exec($sql);
-                $_SESSION['measUnit'] = $preferredMeasUnit;
 
-                header('Location: dashboard.php');  //redirect to dashboard
-            } catch(PDOException $e) {
-                echo "<script>alert('This email is already in use. Please try again.')</script>";
-            }
-            $conn = null;
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $passwordDB);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
+            $conn->exec($sql);
+            $_SESSION['measUnit'] = $preferredMeasUnit;
+
+            header('Location: dashboard.php');  //redirect to dashboard
+        } catch(PDOException $e) {
+            echo "<script>alert('This email is already in use. Please try again.')</script>";
         }
+        $conn = null;
     }
 ?>
 
@@ -51,7 +48,7 @@
         <br>
         <label class="inputLabel" for="signupEmail">Email</label>
         <br>
-        <input name="email" placeholder="example@mail.net" class="loginTextfield" id="signupEmail" type="text" style="margin: 10px 0 40px 0; width: 560px" required>
+        <input onkeyup="validate()" name="email" placeholder="example@mail.net" class="loginTextfield" id="signupEmail" type="text" style="margin: 10px 0 40px 0; width: 560px" required>
         <br>
         <div style="display: inline-block">
             <label class="inputLabel" for="signupPassword">Password</label>
@@ -77,24 +74,53 @@
     </form>
 
     <script type="text/javascript">
+        let errorMessage = document.getElementById("errorPassword");
+        let email = document.getElementById("signupEmail");
+        let sendButton = document.getElementById("loginButton");
+
+        function validateEmail(email) {
+            const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+
+        function validate() {
+            errorMessage.innerHTML = "";
+
+            if (!validateEmail(email.value)) {
+                disableButton();
+                errorMessage.innerHTML = "Invalid email!";
+            }else {
+                enableButton();
+            }
+            return false;
+        }
+
         function checkIfPasswordsMatch(){
             let signupPassword = document.getElementById("signupPassword");
             let signupVerifyPassword = document.getElementById("signupVerifyPassword");
-            let sendButton = document.getElementById("loginButton");
-            let errorMessage = document.getElementById("errorPassword");
 
             if(signupPassword.value !== signupVerifyPassword.value){
-                sendButton.disabled = true;
                 errorMessage.innerHTML = "Passwords don't match!";
-                sendButton.style.backgroundColor = "#d2d2d2";
+                disableButton();
             }else if(signupPassword.value === signupVerifyPassword.value) {
-                sendButton.disabled = false;
                 errorMessage.innerHTML = "";
-                sendButton.style.backgroundColor = "#3ABA50";
-                sendButton.onmouseleave = function () {sendButton.style.backgroundColor = "#3ABA50"};
-                sendButton.onmouseenter = function () {sendButton.style.backgroundColor = "#29A744"};
+                enableButton();
+                validate();
             }
         }
+
+        function disableButton(){
+            sendButton.disabled = true;
+            sendButton.style.backgroundColor = "#d2d2d2";
+        }
+
+        function enableButton(){
+            sendButton.disabled = false;
+            sendButton.style.backgroundColor = "#3ABA50";
+            sendButton.onmouseleave = function () {sendButton.style.backgroundColor = "#3ABA50"};
+            sendButton.onmouseenter = function () {sendButton.style.backgroundColor = "#29A744"};
+        }
+
     </script>
 
 </div>
