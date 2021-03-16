@@ -394,14 +394,22 @@
                     data: {
                         labels:[splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
                         datasets:[{
-                            label:"Todays Temperature (last 10h)",
+                            label:"Todays Temperature",
                             data:[temperatureArr[0], temperatureArr[1], temperatureArr[2], temperatureArr[3], temperatureArr[4], temperatureArr[5], temperatureArr[6], temperatureArr[7], temperatureArr[8], temperatureArr[9]],
                             fill:false,
                             borderColor:"rgb(8,217,214)",
                             lineTension:0.1
                         }]
                     },
-                    options: {}
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
                 });
             </script>
         </div>
@@ -428,14 +436,66 @@
                     data: {
                         labels:[splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
                         datasets:[{
-                            label:"Todays barometric Pressure (last 10h)",
+                            label:"Todays barometric Pressure",
                             data:[pressureArr[0], pressureArr[1], pressureArr[2], pressureArr[3], pressureArr[4], pressureArr[5], pressureArr[6], pressureArr[7], pressureArr[8], pressureArr[9]],
                             fill:false,
                             borderColor:"rgb(37,42,52)",
                             lineTension:0.1
                         }]
                     },
-                    options: {}
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    suggestedMin: 850,
+                                    suggestedMax: 1100
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </div>
+
+    <div class="dashboard-meas" style="width: 1365px; height: 320px">
+        <div class="lineChart-container">
+            <canvas style="margin-left: 20px" id="lineChartHum" height="85" width="350"></canvas>
+            <script type="text/javascript">
+                let ctxLineHum = document.getElementById("lineChartHum");
+                dateArr = '<?php echo json_encode($dateMeas) ?>';
+                let humidityArr = '<?php echo json_encode($humidityMeas)?>';
+                splittedArr = [];
+
+                humidityArr = JSON.parse(humidityArr);
+                dateArr = JSON.parse(dateArr);
+
+                for (let i = 0; i < dateArr.length; i++){
+                    splittedArr[i] = dateArr[i].split(" ");
+                }
+
+                let myLineChartHum = new Chart(ctxLineHum, {
+                    type:"line",
+                    data: {
+                        labels:[splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
+                        datasets:[{
+                            label:"Todays humidity",
+                            data:[humidityArr[0], humidityArr[1], humidityArr[2], humidityArr[3], humidityArr[4], humidityArr[5], humidityArr[6], humidityArr[7], humidityArr[8], humidityArr[9]],
+                            fill:false,
+                            borderColor:"rgb(255,46,99)",
+                            lineTension:0.1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    suggestedMin: 30,
+                                    suggestedMax: 90
+                                }
+                            }]
+                        }
+                    }
                 });
             </script>
         </div>
