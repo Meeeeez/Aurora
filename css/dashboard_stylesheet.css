@@ -90,7 +90,7 @@ body {
     height: 300px;
     width: 865px;
     margin-left: 20px;
-    margin-top: 25px;
+    margin-top: 30px;
     padding-top: 15px;
 
     background-color: white !important;
@@ -160,9 +160,12 @@ body {
     clear: both;
 }
 
+.lineChart-container {
+    width: 1300px;
+    height: 310px;
+}
+
 .dashboard-lineChart {
-    height: 300px;
-    width: 865px;
     background-color: white;
     float: left;
 }
