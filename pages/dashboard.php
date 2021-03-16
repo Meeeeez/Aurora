@@ -74,10 +74,10 @@ if (isset($_SESSION['measUnit'])) {
 <div class="greeting">
     <h1 class="heading-greeting" id="heading-greeting"></h1>
     <script>
-        let name = '<?php echo $_SESSION['firstName'] ?>'
-        document.getElementById("heading-greeting").innerHTML = "Hallo " + name;
+        let name = '<?php echo $_SESSION['firstName'] ?>';
+        document.getElementById("heading-greeting").innerHTML = "Hello " + name + "!";
     </script>
-    <h3 class="prompt-greeting">Sieh dir die heutigen Messungen an!</h3>
+    <h3 class="prompt-greeting">Check out todays measurements</h3>
     <img onclick="scrollDown()" src="../sources/Scroll.gif" style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">
     <script type="text/javascript">
         var scrolledUnderPoint = false;
