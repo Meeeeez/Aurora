@@ -31,11 +31,13 @@
             $temperatureMeas = ($temperatureMeas * 9/5) + 32;
             $pressureMeas = round($pressureMeas * 0.0295301, 2);
 
-            $upperLimitPresChart = 32;
+            $upperLimitPresChart = 32 - $pressureMeas;
+            $upperLimitTempChart = 134 - $temperatureMeas;
             $tempString = $temperatureMeas . "°F";
             $pressString = $pressureMeas . "in";
         }elseif ($_SESSION['measUnit'] == "metric"){
-            $upperLimitPresChart = 1100;
+            $upperLimitPresChart = 1183 - $pressureMeas;
+            $upperLimitTempChart = 57 - $temperatureMeas;
             $tempString = $temperatureMeas . "°C";
             $pressString = $pressureMeas . "mb";
         }
@@ -139,6 +141,7 @@
                 let temperatureMeas = "<?php echo $temperatureMeas ?>";
                 let ctxTemp = document.getElementById('tempChart');
                 let tempString = '<?php echo $tempString ?>';
+                let upperLimitTemp = '<?php echo $upperLimitTempChart ?>';
 
                 let tempChart = new Chart(ctxTemp, {
                     type: 'doughnut',
@@ -146,7 +149,7 @@
                         labels: ['Temp', ''],
                         datasets: [{
                             label: '# of Votes',
-                            data: [temperatureMeas, 40],
+                            data: [temperatureMeas, upperLimitTemp],
                             backgroundColor: [
                                 'rgb(60, 188, 195)',
                                 'rgb(235, 237, 239)',
