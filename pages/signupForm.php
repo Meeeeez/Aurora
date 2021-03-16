@@ -21,6 +21,7 @@
             $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
             $conn->exec($sql);
             $_SESSION['measUnit'] = $preferredMeasUnit;
+            $_SESSION['firstName'] = $firstName;
 
             header('Location: dashboard.php');  //redirect to dashboard
         } catch(PDOException $e) {

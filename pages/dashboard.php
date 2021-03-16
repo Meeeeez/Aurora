@@ -75,6 +75,9 @@ if (isset($_SESSION['measUnit'])) {
     <!-- moment.js für zeitunterschied -->
 </head>
 <body>
+
+<div></div>
+
 <div class="station-info">
     <h1 class="station-location">VILLNÖSS</h1>
     <p class="station-location-further">Bolzano, Italy</p>
