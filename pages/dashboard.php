@@ -462,16 +462,7 @@ if (isset($_SESSION['measUnit'])) {
                         lineTension: 0.15
                     }]
                 },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                suggestedMin: 850,
-                                suggestedMax: 950
-                            }
-                        }]
-                    }
-                }
+                options: {}
             });
         </script>
     </div>
