@@ -11,16 +11,18 @@
     if ($conn2->connect_error) {
         die("Connection failed: " . $conn2->connect_error);
     }
-    $sql = "SELECT * FROM TMeasurement ORDER BY measurementID DESC LIMIT 1;";
+    $sql = "SELECT * FROM TMeasurement ORDER BY measurementID ASC LIMIT 10;";
     $result = $conn2->query($sql);
     $conn2->close();
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
+        $counter = 0;
         while($row = mysqli_fetch_assoc($result)) {
-            $temperatureMeas = $row["temperature"];
-            $humidityMeas = $row["humidity"];
-            $pressureMeas = $row["pressure"];
-            $dateMeas = $row["dateTime"];
+            $temperatureMeas[$counter] = $row["temperature"];
+            $humidityMeas[$counter] = $row["humidity"];
+            $pressureMeas[$counter] = $row["pressure"];
+            $dateMeas[$counter] = $row["dateTime"];
+            $counter++;
         }
     } else {
         echo "<script>alert('Error: No Data in Database')</script>";
@@ -28,18 +30,20 @@
 
     if(isset($_SESSION['measUnit'])){
         if($_SESSION['measUnit'] == "imperial"){
-            $temperatureMeas = ($temperatureMeas * 9/5) + 32;
-            $pressureMeas = round($pressureMeas * 0.0295301, 2);
+            for ($j = 0; $j < $counter; $j++){
+                $temperatureMeas[$j] = ($temperatureMeas[$j] * 9/5) + 32;
+                $pressureMeas[$j] = round($pressureMeas[$j] * 0.0295301, 2);
+            }
+            $upperLimitPresChart = 32 - $pressureMeas[$counter - 1];
+            $upperLimitTempChart = 134 - $temperatureMeas[$counter - 1];
 
-            $upperLimitPresChart = 32 - $pressureMeas;
-            $upperLimitTempChart = 134 - $temperatureMeas;
             $tempString = $temperatureMeas . "°F";
             $pressString = $pressureMeas . "in";
         }elseif ($_SESSION['measUnit'] == "metric"){
-            $upperLimitPresChart = 1183 - $pressureMeas;
-            $upperLimitTempChart = 57 - $temperatureMeas;
-            $tempString = $temperatureMeas . "°C";
-            $pressString = $pressureMeas . "mb";
+            $upperLimitPresChart = 1183 - $pressureMeas[$counter - 1];
+            $upperLimitTempChart = 57 - $temperatureMeas[$counter - 1];
+            $tempString = $temperatureMeas[$counter - 1] . "°C";
+            $pressString = $pressureMeas[$counter - 1] . "mb";
         }
     }
 ?>
@@ -87,7 +91,7 @@
             formatDate()
 
             function formatDate() {
-                let dateMeas = "<?php echo $dateMeas ?>";
+                let dateMeas = "<?php echo $dateMeas[$counter - 1] ?>";
                 let date = new Date();
                 let time;
                 let hours = date.getHours().toString();
@@ -138,7 +142,7 @@
             <div class="chart-container" style="margin-left: -3px;">
                 <canvas id="tempChart" height="130"></canvas>
                 <script type="text/javascript">
-                    let temperatureMeas = "<?php echo $temperatureMeas ?>";
+                    let temperatureMeas = "<?php echo $temperatureMeas[$counter - 1] ?>";
                     let ctxTemp = document.getElementById('tempChart');
                     let tempString = '<?php echo $tempString ?>';
                     let upperLimitTemp = '<?php echo $upperLimitTempChart ?>';
@@ -271,7 +275,7 @@
             <div class="chart-container" style="margin-left: -97px;">
                 <canvas id="presChart" height="130"></canvas>
                 <script type="text/javascript">
-                    let pressureMeas = "<?php echo $pressureMeas ?>";
+                    let pressureMeas = "<?php echo $pressureMeas[$counter - 1] ?>";
                     let pressureLimit = "<?php echo $upperLimitPresChart ?>";
                     let pressureString = '<?php echo $pressString ?>'
                     let ctxPres = document.getElementById('presChart');
@@ -321,7 +325,7 @@
             <div class="chart-container" style="margin-left: -100px;">
                 <canvas id="humChart" height="130"></canvas>
                 <script type="text/javascript">
-                    let humidityMeas = "<?php echo $humidityMeas ?>";
+                    let humidityMeas = "<?php echo $humidityMeas[$counter - 1] ?>";
                     let ctxHum = document.getElementById('humChart');
 
                     let presHum = new Chart(ctxHum, {
@@ -372,7 +376,38 @@
     <div class="dashboard-meas" style="width: 1365px; height: 320px">
         <div class="lineChart-container">
             <canvas style="margin-left: 20px" id="lineChart" height="85" width="350"></canvas>
-            <script type="text/javascript" src="../js/lineChart.js"></script>
+            <script type="text/javascript">
+                let ctxLine = document.getElementById("lineChart");
+                let dateArr = '<?php echo json_encode($dateMeas) ?>';
+                let temp = 0
+                dateArr = JSON.parse(dateArr);
+                alert(dateArr);
+
+                //datum splitten und dann unten statt 8:00 einfügen
+
+                let myLineChart = new Chart(ctxLine, {
+                    type:"line",
+                    data: {
+                        labels:["8:00","8:00","8:00","8:00","8:00","8:00","8:00","8:00","8:00","8:00"],
+                        datasets:[{
+                            label:"Todays Temperature",
+                            data:[32,31,29,25,21,26,27,28,29],
+                            fill:false,
+                            borderColor:"rgb(75, 192, 192)",
+                            lineTension:0.1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
         </div>
     </div>
 </body>
