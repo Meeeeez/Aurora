@@ -13,6 +13,14 @@
 
             $sql = "DELETE FROM TMeasurement";
             $conn->query($sql);
+
+            $_SESSION = array();
+            if (ini_get("session.use_cookies")){
+                $par = session_get_cookie_params();
+                setcookie(session_name(), '', time() - 42000, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
+            }
+            session_destroy();
+
             header("Location: ../pages/error.php");
             $conn->close();
         }else if($_GET['submit'] == 'delProt'){
@@ -53,22 +61,13 @@
     <form action="" method="GET">
         <ul>
             <li>
-                <button name="submit" id="button2" onmouseover="mouseEnter()" value="delProt" class="adminButton">Clear Protocol</button>
+                <button name="submit" id="button2" value="delProt" class="adminButton">Clear Protocol</button>
             </li>
             <li>
-                <button name="submit" id="button3" onmouseover="mouseEnter()" value="delMeas" class="adminButton">Delete all Measurements</button>
+                <button name="submit" id="button3" value="delMeas" class="adminButton">Delete all Measurements</button>
             </li>
         </ul>
     </form>
 
-
-    <script type="text/javascript">
-        function mouseEnter(){
-            document.getElementById("button1").style.cursor = "pointer";
-            document.getElementById("button2").style.cursor = "pointer";
-            document.getElementById("button3").style.cursor = "pointer";
-            document.getElementById("button4").style.cursor = "pointer";
-        }
-    </script>
 </div>
 <img id="scrollGif2" onmouseover="document.getElementById('scrollGif2').style.cursor = 'pointer';" onclick="if(window.pageYOffset === 0) window.scrollBy(0, 320);" src="../sources/Scroll.gif" style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">
