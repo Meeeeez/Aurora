@@ -38,15 +38,26 @@
         }
     </script>
 </div>
-<img id="scrollGif" onmouseover="changeCursor()" onclick="scrollDown()" src="../sources/Scroll.gif" style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">
+<img id="scrollGif2" onmouseover="document.getElementById('scrollGif2').style.cursor = 'pointer'" onclick="if(window.pageYOffset === 0) window.scrollBy(0, 320)" src="../sources/Scroll.gif" style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">
 <script type="text/javascript">
-    function scrollDown(){
-        if(window.pageYOffset === 0){
-            window.scrollBy(0, 320);
-        }
+
+    function deleteUser(){
+        <?php
+            try {
+                $servername = "weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com";
+                $username = "stationAdministrator";
+                $password = "StatioAdministrator123!";
+                $dbname = "WeatherWebApp";
+
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt = $conn->prepare("DELETE FROM TUser WHERE foreignRoleID = 2;");
+                $stmt->execute();
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            $conn = null;
+        ?>
     }
 
-    function changeCursor(){
-        document.getElementById("scrollGif").style.cursor = "pointer";
-    }
 </script>
