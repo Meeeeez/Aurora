@@ -8,14 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="margin: 0 auto">
-        <h1>There was an Error</h1>
-        <p>This could be the cause:</p>
-        <ul>
-            <li>No data in Database</li>
-            <li>You dont have access to this page</li>
-            <li>You dont have an account</li>
-        </ul>
+    <div>
+        <h1 style="margin-left: 550px">You deleted all measurements</h1>
+        <p style="margin-left: 558px">Please make some measurements before accessing this page</p>
     </div>
 
 </body>

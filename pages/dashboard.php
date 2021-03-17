@@ -78,7 +78,6 @@ if (isset($_SESSION['measUnit'])) {
         }else if($_SESSION['role'] == 2) {
             include("../pages/greetings.php");
         }
-        session_destroy();
     }
 ?>
 

@@ -25,8 +25,6 @@
             $conn->query($sql);
             $conn->close();
             echo "<script>alert('Records Deleted');</script>";
-        }else if($_GET['submit'] == 'seeProt'){
-            echo "<script>alert('adsfgdhfsrfaedgn');</script>";
         }
     }
 ?>
@@ -54,9 +52,6 @@
     <form action="" method="GET">
         <ul>
             <li>
-                <button name="submit" id="button4" onmouseover="mouseEnter()" value="seeProt" class="adminButton">Check Protocol</button>
-            </li>
-            <li>
                 <button name="submit" id="button2" onmouseover="mouseEnter()" value="delProt" class="adminButton">Clear Protocol</button>
             </li>
             <li>
@@ -75,4 +70,4 @@
         }
     </script>
 </div>
-<img id="scrollGif2" onmouseover="document.getElementById('scrollGif2').style.cursor = 'pointer';" onclick="if(window.pageYOffset === 0) window.scrollBy(0, 350);" src="../sources/Scroll.gif" style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">
+<img id="scrollGif2" onmouseover="document.getElementById('scrollGif2').style.cursor = 'pointer';" onclick="if(window.pageYOffset === 0) window.scrollBy(0, 320);" src="../sources/Scroll.gif" style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">
