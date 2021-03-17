@@ -12,8 +12,8 @@
             }
 
             $sql = "DELETE FROM TUser WHERE foreignRoleID = 2";
-
             $conn->close();
+            echo "<script>alert('Records Deleted');</script>";
         }else if($_GET['submit'] == 'delMeas'){
             $conn = new mysqli($servername, $username, $password, $dbname);
             if ($conn->connect_error) {
@@ -21,8 +21,8 @@
             }
 
             $sql = "DELETE FROM TMeasurement";
-
             $conn->close();
+            echo "<script>alert('Records Deleted');</script>";
         }else if($_GET['submit'] == 'delProt'){
             $conn = new mysqli($servername, $username, $password, $dbname);
             if ($conn->connect_error) {
@@ -30,10 +30,10 @@
             }
 
             $sql = "DELETE FROM TProtocol";
-
             $conn->close();
+            echo "<script>alert('Records Deleted');</script>";
         }else if($_GET['submit'] == 'seeProt'){
-            //look at protocol
+            echo "<script>alert('adsfgdhfsrfaedgn');</script>";
         }
     }
 ?>
