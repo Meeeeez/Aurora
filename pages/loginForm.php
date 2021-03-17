@@ -18,11 +18,18 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // output data of each row
             while($row = $result->fetch_assoc()) {
                 $_SESSION['firstName'] = $row['firstName'];
                 $_SESSION['role'] = $row['foreignRoleID'];
                 $_SESSION['measUnit'] = $row['measurementUnit'];
+                $userID = $row['userID'];
+
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $passwordDB);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "INSERT INTO TProtocol (foreignUserID, foreignStationID) VALUES ('$userID', 1)";
+                $conn->exec($sql);
+
+                $conn = null;
 
                 header("Location: dashboard.php");
             }
