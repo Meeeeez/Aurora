@@ -5,17 +5,7 @@
     $dbname = "WeatherWebApp";
 
     if(isset($_GET['submit'])){
-        if($_GET['submit'] == 'delUser'){
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $sql = "DELETE FROM TUser WHERE foreignRoleID = 2";
-            $conn->query($sql);
-            $conn->close();
-            echo "<script>alert('Records Deleted');</script>";
-        }else if($_GET['submit'] == 'delMeas'){
+        if($_GET['submit'] == 'delMeas'){
             $conn = new mysqli($servername, $username, $password, $dbname);
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
@@ -24,7 +14,9 @@
             $sql = "DELETE FROM TMeasurement";
             $conn->query($sql);
             $conn->close();
-            echo "<script>alert('Records Deleted');</script>";
+            echo "<script>alert('Records Deleted. You will be redirected.');</script>";
+            sleep(5);
+            header("Location: ../pages/error.php");
         }else if($_GET['submit'] == 'delProt'){
             $conn = new mysqli($servername, $username, $password, $dbname);
             if ($conn->connect_error) {
@@ -65,9 +57,6 @@
         <ul>
             <li>
                 <button name="submit" id="button4" onmouseover="mouseEnter()" value="seeProt" class="adminButton">Check Protocol</button>
-            </li>
-            <li>
-                <button name="submit" id="button1" onmouseover="mouseEnter()" value="delUser" class="adminButton">Delete all Users</button>
             </li>
             <li>
                 <button name="submit" id="button2" onmouseover="mouseEnter()" value="delProt" class="adminButton">Clear Protocol</button>
