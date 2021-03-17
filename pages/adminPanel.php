@@ -13,10 +13,8 @@
 
             $sql = "DELETE FROM TMeasurement";
             $conn->query($sql);
-            $conn->close();
-            echo "<script>alert('Records Deleted. You will be redirected.');</script>";
-            sleep(5);
             header("Location: ../pages/error.php");
+            $conn->close();
         }else if($_GET['submit'] == 'delProt'){
             $conn = new mysqli($servername, $username, $password, $dbname);
             if ($conn->connect_error) {
