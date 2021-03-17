@@ -12,6 +12,7 @@
             }
 
             $sql = "DELETE FROM TUser WHERE foreignRoleID = 2";
+            $conn->query($sql);
             $conn->close();
             echo "<script>alert('Records Deleted');</script>";
         }else if($_GET['submit'] == 'delMeas'){
@@ -21,6 +22,7 @@
             }
 
             $sql = "DELETE FROM TMeasurement";
+            $conn->query($sql);
             $conn->close();
             echo "<script>alert('Records Deleted');</script>";
         }else if($_GET['submit'] == 'delProt'){
@@ -30,6 +32,7 @@
             }
 
             $sql = "DELETE FROM TProtocol";
+            $conn->query($sql);
             $conn->close();
             echo "<script>alert('Records Deleted');</script>";
         }else if($_GET['submit'] == 'seeProt'){
