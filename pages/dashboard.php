@@ -20,7 +20,7 @@ if (mysqli_num_rows($result) > 0) {
         $counter++;
     }
 } else {
-    echo "<script>alert('Error: No Data in Database')</script>";
+    header("Location: ../pages/error.php");
 }
 
 if (isset($_SESSION['measUnit'])) {
