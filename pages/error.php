@@ -9,7 +9,7 @@
 </head>
 <body>
     <div>
-        <h1 style="margin-left: 550px">You deleted all measurements</h1>
+        <h1 style="margin-left: 550px">All measurements were deleted</h1>
         <p style="margin-left: 558px">Please make some measurements before accessing this page</p>
     </div>
 
