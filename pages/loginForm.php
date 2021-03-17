@@ -21,8 +21,9 @@
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 $_SESSION['firstName'] = $row['firstName'];
-                $_SESSION['email'] = $row['email'];
+                $_SESSION['role'] = $row['foreignRoleID'];
                 $_SESSION['measUnit'] = $row['measurementUnit'];
+
                 header("Location: dashboard.php");
             }
         } else {

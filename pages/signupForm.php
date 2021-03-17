@@ -18,10 +18,11 @@
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $passwordDB);
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (3, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
+            $sql = "INSERT INTO TUser (foreignRoleID, email, firstName, lastName, password, measurementUnit) values (2, '$email', '$firstName', '$lastName', '$password', '$preferredMeasUnit');";
             $conn->exec($sql);
             $_SESSION['measUnit'] = $preferredMeasUnit;
             $_SESSION['firstName'] = $firstName;
+            $_SESSION['role'] = 2;
 
             header('Location: dashboard.php');  //redirect to dashboard
         } catch(PDOException $e) {

@@ -1,0 +1,1 @@
+<h1 style="margin: 0 auto">this is an admin panel</h1>
