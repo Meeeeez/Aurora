@@ -32,6 +32,7 @@
 <style>
     .adminPanel {
         background-color: white;
+        padding: 5px;
     }
 
     .adminButton {

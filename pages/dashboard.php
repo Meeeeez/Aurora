@@ -1,6 +1,18 @@
 <?php
 session_start();
 
+if(isset($_GET['command'])){
+    if($_GET['command'] == 'logout'){
+        $_SESSION = array();
+        if (ini_get("session.use_cookies")){
+            $par = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
+        }
+        session_destroy();
+        header("Location: ../pages/loginPage.php");
+    }
+}
+
 $conn2 = new mysqli("weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com", "user", "UserPassword123!", "WeatherWebApp");
 
 if ($conn2->connect_error) {
@@ -87,7 +99,12 @@ if (isset($_SESSION['measUnit'])) {
     <a class="station-coordinates-time">46.64, 11.67</a>
     <p class="station-local-time-label">Local Time: </p>
     <p class="station-coordinates-time" id="time"></p>
-    <div class="active-badge" id="activityBadge"></div>
+    <div style="display: inline-block; margin-left: 750px">
+        <form style="display: inline-block" action="" method="get">
+            <button name="command" value="logout" id="logoutButton" onmouseover="document.getElementById('logoutButton').style.cursor = 'pointer';" class="logoutButton">LOGOUT</button>
+        </form>
+        <div class="active-badge" id="activityBadge"></div>
+    </div>
     <script type="text/javascript" src="../js/get_localTime.js"></script>
 </div>
 
@@ -475,16 +492,7 @@ if (isset($_SESSION['measUnit'])) {
                         lineTension: 0.15
                     }]
                 },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                suggestedMin: 30,
-                                suggestedMax: 90
-                            }
-                        }]
-                    }
-                }
+                options: {}
             });
         </script>
     </div>

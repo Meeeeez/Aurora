@@ -1,11 +1,11 @@
 <?php
+    session_start();
     $servername = "weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com";
     $username = "login/signup";
     $passwordDB = "Login/SingupUserPassword123!";
     $dbname = "WeatherWebApp";
 
     if(isset($_POST['submit'])){
-        session_start();
 
         $firstName = $_POST['firstName'];
         $lastName = $_POST['firstName'];
