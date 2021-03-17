@@ -5,7 +5,7 @@
         document.getElementById("heading-greeting").innerHTML = "Hello " + name + "!";
     </script>
     <h3 class="prompt-greeting">Check out todays measurements</h3>
-    <img onclick="scrollDown()" src="../sources/Scroll.gif" style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">
+    <img id="scrollGif" onmouseover="changeCursor()" onclick="scrollDown()" src="../sources/Scroll.gif" style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">
     <script type="text/javascript">
         var scrolledUnderPoint = false;
 
@@ -18,6 +18,10 @@
                 window.scrollTo(0, 240);
             }
         });
+
+        function changeCursor(){
+            document.getElementById("scrollGif").style.cursor = "pointer";
+        }
 
         function scrollDown(){
             window.scrollBy(0, 239);
