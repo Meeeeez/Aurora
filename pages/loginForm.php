@@ -7,17 +7,21 @@
 
     if(isset($_POST['submit'])){
         $email = $_POST['email'];
-        $password = md5($_POST['password']);
+        $password = $_POST['password'];
 
         $conn = new mysqli($servername, $username, $passwordDB, $dbname);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM TUser WHERE email='$email' AND password='$password'";
+        $sql = "SELECT * FROM TUser WHERE email='$email'";
         $result = $conn->query($sql);
+        $user = $result->fetch_assoc();
 
-        if ($result->num_rows > 0) {
+        if ($result->num_rows > 0 && password_verify($password, $user['password'])) {
+            $sql = "SELECT * FROM TUser WHERE email='$email'";
+            $result = $conn->query($sql);
+
             while($row = $result->fetch_assoc()) {
                 $_SESSION['firstName'] = $row['firstName'];
                 $_SESSION['role'] = $row['foreignRoleID'];
