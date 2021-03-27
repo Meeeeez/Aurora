@@ -9,7 +9,7 @@ if(isset($_GET['command'])){
             setcookie(session_name(), '', time() - 42000, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
         }
         session_destroy();
-        header("Location: ../pages/loginPage.php");
+        header("Location: ../pages/index.php");
     }
 }
 
