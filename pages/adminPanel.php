@@ -51,7 +51,8 @@
     }
 </style>
 <div class="adminPanel">
-    <h1 style="margin: 0">Admin Panel</h1>
+
+    <h1 style="margin: 0; text-align: center;">Admin Panel</h1>
     <h2 style="margin: 10px 0 5px 0" id="adminGreeting"></h2>
     <script>
         let adminGreeting = document.getElementById("adminGreeting");
