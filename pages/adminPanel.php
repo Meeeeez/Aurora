@@ -17,7 +17,7 @@
             $_SESSION = array();
             if (ini_get("session.use_cookies")){
                 $par = session_get_cookie_params();
-                setcookie(session_name(), '', time() - 42000, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
+                setcookie(session_name(), '', 0, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
             }
             session_destroy();
 
