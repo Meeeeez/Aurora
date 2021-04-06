@@ -18,7 +18,7 @@
         $result = $conn->query($sql);
         $user = $result->fetch_assoc();
 
-        if ($result->num_rows > 0 && password_verify($password, $user['password'])) {
+        if ($result->num_rows > 0 && password_verify($password, $user['password']) || $result->num_rows > 0 && $user['password'] == md5($password)) {
             $sql = "SELECT * FROM TUser WHERE email='$email'";
             $result = $conn->query($sql);
 
