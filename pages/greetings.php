@@ -1,4 +1,4 @@
-<div class="greeting">
+<div class="greeting" id="greetings">
     <h1 class="heading-greeting" id="heading-greeting"></h1>
     <script>
         let name = '<?php echo $_SESSION['firstName'] ?>';
@@ -15,7 +15,7 @@
             }
 
             if(scrolledUnderPoint && window.pageYOffset <= 240){
-                window.scrollTo(0, 240);
+                document.getElementById("greetings").remove();
             }
         });
 
