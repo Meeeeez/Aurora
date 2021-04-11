@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if(isset($_GET['command'])){
-    if($_GET['command'] == 'logout'){
+if (isset($_GET['command'])) {
+    if ($_GET['command'] == 'logout') {
         $_SESSION = array();
-        if (ini_get("session.use_cookies")){
+        if (ini_get("session.use_cookies")) {
             $par = session_get_cookie_params();
             setcookie(session_name(), '', 0, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
         }
@@ -84,13 +84,13 @@ if (isset($_SESSION['measUnit'])) {
 <body>
 
 <?php
-    if(isset($_SESSION['role'])){
-        if($_SESSION['role'] == 1){
-            include("../pages/adminPanel.php");
-        }else if($_SESSION['role'] == 2) {
-            include("../pages/greetings.php");
-        }
+if (isset($_SESSION['role'])) {
+    if ($_SESSION['role'] == 1) {
+        include("../pages/adminPanel.php");
+    } else if ($_SESSION['role'] == 2) {
+        include("../pages/greetings.php");
     }
+}
 ?>
 
 <div class="station-info">
@@ -101,7 +101,10 @@ if (isset($_SESSION['measUnit'])) {
     <p class="station-coordinates-time" id="time"></p>
     <div style="display: inline-block; margin-left: 750px">
         <form style="display: inline-block" action="" method="get">
-            <button name="command" value="logout" id="logoutButton" onmouseover="document.getElementById('logoutButton').style.cursor = 'pointer';" class="logoutButton">LOGOUT</button>
+            <button name="command" value="logout" id="logoutButton"
+                    onmouseover="document.getElementById('logoutButton').style.cursor = 'pointer';"
+                    class="logoutButton">LOGOUT
+            </button>
         </form>
         <div class="active-badge" id="activityBadge"></div>
     </div>

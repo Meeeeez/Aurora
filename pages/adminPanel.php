@@ -1,40 +1,40 @@
 <?php
-    $servername = "weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com";
-    $username = "stationAdministrator";
-    $password = "StatioAdministrator123!";
-    $dbname = "WeatherWebApp";
+$servername = "weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com";
+$username = "stationAdministrator";
+$password = "StatioAdministrator123!";
+$dbname = "WeatherWebApp";
 
-    if(isset($_GET['submit'])){
-        if($_GET['submit'] == 'delMeas'){
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $sql = "DELETE FROM TMeasurement";
-            $conn->query($sql);
-
-            $_SESSION = array();
-            if (ini_get("session.use_cookies")){
-                $par = session_get_cookie_params();
-                setcookie(session_name(), '', 0, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
-            }
-            session_destroy();
-
-            header("Location: ../pages/error.php");
-            $conn->close();
-        }else if($_GET['submit'] == 'delProt'){
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $sql = "DELETE FROM TProtocol";
-            $conn->query($sql);
-            $conn->close();
-            echo "<script>alert('Records Deleted');</script>";
+if (isset($_GET['submit'])) {
+    if ($_GET['submit'] == 'delMeas') {
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
+
+        $sql = "DELETE FROM TMeasurement";
+        $conn->query($sql);
+
+        $_SESSION = array();
+        if (ini_get("session.use_cookies")) {
+            $par = session_get_cookie_params();
+            setcookie(session_name(), '', 0, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
+        }
+        session_destroy();
+
+        header("Location: ../pages/error.php");
+        $conn->close();
+    } else if ($_GET['submit'] == 'delProt') {
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "DELETE FROM TProtocol";
+        $conn->query($sql);
+        $conn->close();
+        echo "<script>alert('Records Deleted');</script>";
     }
+}
 ?>
 
 <style>
@@ -71,4 +71,6 @@
     </form>
 
 </div>
-<img id="scrollGif2" onmouseover="document.getElementById('scrollGif2').style.cursor = 'pointer';" onclick="if(window.pageYOffset === 0) window.scrollBy(0, 320);" src="../sources/Scroll.gif" style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">
+<img id="scrollGif2" onmouseover="document.getElementById('scrollGif2').style.cursor = 'pointer';"
+     onclick="if(window.pageYOffset === 0) window.scrollBy(0, 320);" src="../sources/Scroll.gif"
+     style="height: 100px; width: 100px; margin-left: 650px" alt="scroll gif">

@@ -10,17 +10,17 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="imageContainer">
-        <img class="image" src="../sources/weatherLoginIllustration.jpeg" alt="login_illustration">
-    </div>
-    <div class="loginPage">
-        <?php
-            if(empty($_GET['page'])) {
-                include("../pages/loginForm.php");
-            }else if ($_GET['page'] = "signup") {
-                include("../pages/signupForm.php");
-            }
-        ?>
-    </div>
+<div class="imageContainer">
+    <img class="image" src="../sources/weatherLoginIllustration.jpeg" alt="login_illustration">
+</div>
+<div class="loginPage">
+    <?php
+    if (empty($_GET['page'])) {
+        include("../pages/loginForm.php");
+    } else if ($_GET['page'] = "signup") {
+        include("../pages/signupForm.php");
+    }
+    ?>
+</div>
 </body>
 </html>

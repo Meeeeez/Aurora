@@ -1,11 +1,11 @@
 <?php
-    session_start();
-    $_SESSION = array();
-    if (ini_get("session.use_cookies")){
-        $par = session_get_cookie_params();
-        setcookie(session_name(), '', 0, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
-    }
-    session_destroy();
+session_start();
+$_SESSION = array();
+if (ini_get("session.use_cookies")) {
+    $par = session_get_cookie_params();
+    setcookie(session_name(), '', 0, $par["path"], $par["domain"], $par["secure"], $par["httponly"]);
+}
+session_destroy();
 ?>
 
 <!doctype html>
@@ -18,10 +18,9 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1 style="margin-left: 550px">All measurements were deleted</h1>
-        <p style="margin-left: 558px">Please make some measurements before accessing this page</p>
-    </div>
-
+<div>
+    <h1 style="margin-left: 550px">All measurements were deleted</h1>
+    <p style="margin-left: 558px">Please make some measurements before accessing this page</p>
+</div>
 </body>
 </html>

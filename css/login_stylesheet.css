@@ -1,4 +1,8 @@
-html, body {margin: 0; height: 100%; overflow: hidden}
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
 
 .imageContainer {
     float: left;
@@ -101,4 +105,3 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     -moz-osx-font-smoothing: grayscale;
     color: red;
 }
-
