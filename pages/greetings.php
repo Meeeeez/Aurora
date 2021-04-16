@@ -22,7 +22,7 @@
         });
 
         function scrollDown() {
-            window.scrollBy(0, 239);
+            window.scrollBy(0, 241);
         }
     </script>
 </div>
