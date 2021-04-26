@@ -1,8 +1,8 @@
 <?php
-$servername = "weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com";
+$servername = "192.168.178.62";
 $username = "stationAdministrator";
 $password = "StatioAdministrator123!";
-$dbname = "WeatherWebApp";
+$dbname = "raynDB";
 
 if (isset($_GET['submit'])) {
     if ($_GET['submit'] == 'delMeas') {

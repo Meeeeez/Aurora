@@ -13,7 +13,7 @@ if (isset($_GET['command'])) {
     }
 }
 
-$conn2 = new mysqli("weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com", "user", "UserPassword123!", "WeatherWebApp");
+$conn2 = new mysqli("192.168.178.62", "user", "UserPassword123!", "raynDB");
 
 if ($conn2->connect_error) {
     die("Connection failed: " . $conn2->connect_error);

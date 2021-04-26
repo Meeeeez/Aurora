@@ -1,9 +1,9 @@
 <?php
 session_start();
-$servername = "weatherwebapp-db-new.cikkod1lareu.us-east-1.rds.amazonaws.com";
+$servername = "192.168.178.62";
 $username = "login/signup";
 $passwordDB = "Login/SingupUserPassword123!";
-$dbname = "WeatherWebApp";
+$dbname = "raynDB";
 
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
