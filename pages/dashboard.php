@@ -13,18 +13,18 @@ if (isset($_GET['command'])) {
     }
 }
 
-$conn2 = new mysqli("192.168.178.62", "user", "UserPassword123!", "raynDB");
+$conn2 = new mysqli("192.168.178.62", "remoteUser", "remoteUser123!", "raynDB");
 
 if ($conn2->connect_error) {
     die("Connection failed: " . $conn2->connect_error);
 }
-$sql = "SELECT * FROM TMeasurement ORDER BY measurementID ASC LIMIT 10;";
+$sql = "SELECT * FROM TWeatherMeasurement ORDER BY measurementID ASC LIMIT 10;";
 $result = $conn2->query($sql);
 $conn2->close();
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     $counter = 0;
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = mysqli_fetch_assoc($result)) {          //get weather data
         $temperatureMeas[$counter] = $row["temperature"];
         $humidityMeas[$counter] = $row["humidity"];
         $pressureMeas[$counter] = $row["pressure"];
@@ -35,21 +35,48 @@ if (mysqli_num_rows($result) > 0) {
     header("Location: ../pages/error.php");
 }
 
+
+$conn3 = new mysqli("192.168.178.62", "remoteUser", "remoteUser123!", "raynDB");
+
+if ($conn3->connect_error) {
+    die("Connection failed: " . $conn3->connect_error);
+}
+
+$sql = "SELECT * FROM TSoilMeasurement ORDER BY soilMeasurementID ASC LIMIT 10;";
+$result = $conn3->query($sql);
+$conn3->close();
+
+if (mysqli_num_rows($result) > 0) {     //get soil data
+    $counter = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        $soilTemperatureMeas[$counter] = $row["soilTemperature"];
+        $soilHumidityMeas[$counter] = $row["soilHumidity"];
+        $soilDateMeas[$counter] = $row["dateTime"];
+        $counter++;
+    }
+} else {
+    header("Location: ../pages/error.php");
+}
+
+
 if (isset($_SESSION['measUnit'])) {
     if ($_SESSION['measUnit'] == "imperial") {
-        for ($j = 0; $j < $counter; $j++) {
+        for ($j = 0; $j < $counter; $j++) {             //convert to imperial
             $temperatureMeas[$j] = ($temperatureMeas[$j] * 9 / 5) + 32;
+            $soilTemperatureMeas[$j] = ($soilTemperatureMeas[$j] * 9 / 5) + 32;
             $pressureMeas[$j] = round($pressureMeas[$j] * 0.0295301, 2);
         }
         $upperLimitPresChart = 32 - $pressureMeas[$counter - 1];
         $upperLimitTempChart = 134 - $temperatureMeas[$counter - 1];
 
         $tempString = $temperatureMeas[$counter - 1] . "°F";
+        $soilTempString = $soilTemperatureMeas[$counter - 1] . "°F";
         $pressString = $pressureMeas[$counter - 1] . "in";
     } elseif ($_SESSION['measUnit'] == "metric") {
         $upperLimitPresChart = 1183 - $pressureMeas[$counter - 1];
         $upperLimitTempChart = 57 - $temperatureMeas[$counter - 1];
         $tempString = $temperatureMeas[$counter - 1] . "°C";
+        $soilTempString = $soilTemperatureMeas[$counter - 1] . "°C";
         $pressString = $pressureMeas[$counter - 1] . "mb";
     }
 }
@@ -388,6 +415,101 @@ if (isset($_SESSION['role'])) {
     </div>
     <div class="dashboard-meas">    <!-- boden temp und feuchtigkeit anzeigen -->
         <h3 class="dashboard-meas-heading">Latest Soil Data</h3>
+        <div class="donutCharts">
+            <div class="chart-container" style="margin-left: 70px">
+                <canvas id="soilTempChart" height="130"></canvas>
+                <script type="text/javascript">
+                    let soilTempMeas = "<?php echo $soilTemperatureMeas[$counter - 1] ?>";
+                    let ctxSoilTemp = document.getElementById('soilTempChart');
+                    let soilTempString = "<?php echo $soilTempString ?>";
+
+                    let soilTemp = new Chart(ctxSoilTemp, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Hum', ''],
+                            datasets: [{
+                                label: '',
+                                data: [soilTempMeas, upperLimitTemp],
+                                backgroundColor: [
+                                    'rgb(60, 188, 195)',
+                                    'rgb(235, 237, 239)',
+                                ],
+                                borderColor: [
+                                    'rgb(60, 188, 195)',
+                                    'rgb(235, 237, 239)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            legend: {
+                                display: false
+                            },
+                            elements: {
+                                center: {
+                                    text: soilTempString,
+                                    color: '#3cbcc3', // Default is #000000
+                                    fontStyle: 'Calibri', // Default is Arial
+                                    sidePadding: 20, // Default is 20 (as a percentage)
+                                    minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
+                                    lineHeight: 25 // Default is 25 (in px), used for when text wraps
+                                },
+                            },
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            cutoutPercentage: 65
+                        }
+                    });
+                </script>
+                <p class="text" style="margin: 12px 0 0 90px; color: #262626">TEMPERATURE</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="soilHumChart" height="130"></canvas>
+                <script type="text/javascript">
+                    let soilHumMeas = "<?php echo $soilHumidityMeas[$counter - 1] ?>";
+                    let ctxSoilHum = document.getElementById('soilHumChart');
+
+                    let soilHum = new Chart(ctxSoilHum, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Hum', ''],
+                            datasets: [{
+                                label: '',
+                                data: [soilHumMeas, 100],
+                                backgroundColor: [
+                                    'rgb(124,173,62)',
+                                    'rgb(235, 237, 239)',
+                                ],
+                                borderColor: [
+                                    'rgb(124,173,62)',
+                                    'rgb(235, 237, 239)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            legend: {
+                                display: false
+                            },
+                            elements: {
+                                center: {
+                                    text: soilHumMeas + '%',
+                                    color: '#7cad3e', // Default is #000000
+                                    fontStyle: 'Calibri', // Default is Arial
+                                    sidePadding: 20, // Default is 20 (as a percentage)
+                                    minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
+                                    lineHeight: 25 // Default is 25 (in px), used for when text wraps
+                                },
+                            },
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            cutoutPercentage: 65
+                        }
+                    });
+                </script>
+                <p class="text" style="margin: 12px 0 0 118px; color: #262626">HUMIDITY</p>
+            </div>
+        </div>
     </div>
 </div>
 

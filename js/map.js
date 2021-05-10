@@ -20,4 +20,4 @@ let circle = L.circle([46.642, 11.678], {
     fillOpacity: 0.2,
     radius: 350,
 }).addTo(map);
-circle.bindPopup("The weather station is somewhere here");
+circle.bindPopup("The station is somewhere here");
