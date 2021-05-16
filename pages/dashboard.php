@@ -13,7 +13,7 @@ if (isset($_GET['command'])) {
     }
 }
 
-$conn2 = new mysqli("192.168.178.62", "remoteUser", "remoteUser123!", "raynDB");
+$conn2 = new mysqli("10.10.30.2", "remoteUser", "remoteUser123!", "raynDB");
 
 if ($conn2->connect_error) {
     die("Connection failed: " . $conn2->connect_error);
@@ -36,7 +36,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 
-$conn3 = new mysqli("192.168.178.62", "remoteUser", "remoteUser123!", "raynDB");
+$conn3 = new mysqli("10.10.30.2", "remoteUser", "remoteUser123!", "raynDB");
 
 if ($conn3->connect_error) {
     die("Connection failed: " . $conn3->connect_error);
@@ -199,11 +199,11 @@ if (isset($_SESSION['role'])) {
                                 label: '# of Votes',
                                 data: [temperatureMeas, upperLimitTemp],
                                 backgroundColor: [
-                                    'rgb(60, 188, 195)',
+                                    'rgb(116,211,220)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderColor: [
-                                    'rgb(60, 188, 195)',
+                                    'rgb(116,211,220)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderWidth: 1
@@ -216,7 +216,7 @@ if (isset($_SESSION['role'])) {
                             elements: {
                                 center: {
                                     text: tempString,
-                                    color: '#3cbcc3', // Default is #000000
+                                    color: '#74d3dc', // Default is #000000
                                     fontStyle: 'Calibri', // Default is Arial
                                     sidePadding: 20, // Default is 20 (as a percentage)
                                     minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
@@ -415,6 +415,10 @@ if (isset($_SESSION['role'])) {
     </div>
     <div class="dashboard-meas">    <!-- boden temp und feuchtigkeit anzeigen -->
         <h3 class="dashboard-meas-heading">Latest Soil Data</h3>
+        <p class="dashboard-meas-latest-data" id="latestSoilData"></p>
+        <script>
+            document.getElementById("latestSoilData").innerHTML = document.getElementById("latestData").innerHTML;
+        </script>
         <div class="donutCharts">
             <div class="chart-container" style="margin-left: 70px">
                 <canvas id="soilTempChart" height="130"></canvas>
@@ -431,11 +435,11 @@ if (isset($_SESSION['role'])) {
                                 label: '',
                                 data: [soilTempMeas, upperLimitTemp],
                                 backgroundColor: [
-                                    'rgb(60, 188, 195)',
+                                    'rgb(58,149,78)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderColor: [
-                                    'rgb(60, 188, 195)',
+                                    'rgb(58,149,78)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderWidth: 1
@@ -448,7 +452,7 @@ if (isset($_SESSION['role'])) {
                             elements: {
                                 center: {
                                     text: soilTempString,
-                                    color: '#3cbcc3', // Default is #000000
+                                    color: '#3a954e', // Default is #000000
                                     fontStyle: 'Calibri', // Default is Arial
                                     sidePadding: 20, // Default is 20 (as a percentage)
                                     minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
@@ -477,11 +481,11 @@ if (isset($_SESSION['role'])) {
                                 label: '',
                                 data: [soilHumMeas, 100],
                                 backgroundColor: [
-                                    'rgb(124,173,62)',
+                                    'rgb(184,205,52)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderColor: [
-                                    'rgb(124,173,62)',
+                                    'rgb(184,205,52)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderWidth: 1
@@ -494,7 +498,7 @@ if (isset($_SESSION['role'])) {
                             elements: {
                                 center: {
                                     text: soilHumMeas + '%',
-                                    color: '#7cad3e', // Default is #000000
+                                    color: 'rgb(184,205,52)', // Default is #000000
                                     fontStyle: 'Calibri', // Default is Arial
                                     sidePadding: 20, // Default is 20 (as a percentage)
                                     minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
@@ -538,7 +542,7 @@ if (isset($_SESSION['role'])) {
                 data: {
                     labels: [splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
                     datasets: [{
-                        label: "Temperature",
+                        label: "Air Temperature",
                         data: [temperatureArr[0], temperatureArr[1], temperatureArr[2], temperatureArr[3], temperatureArr[4], temperatureArr[5], temperatureArr[6], temperatureArr[7], temperatureArr[8], temperatureArr[9]],
                         fill: 'origin',
                         borderColor: "rgb(8,217,214)",
@@ -616,7 +620,7 @@ if (isset($_SESSION['role'])) {
                 data: {
                     labels: [splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
                     datasets: [{
-                        label: "Humidity",
+                        label: "Air Humidity",
                         data: [humidityArr[0], humidityArr[1], humidityArr[2], humidityArr[3], humidityArr[4], humidityArr[5], humidityArr[6], humidityArr[7], humidityArr[8], humidityArr[9]],
                         fill: 'origin',
                         borderColor: "rgb(124,173,62)",
@@ -629,5 +633,77 @@ if (isset($_SESSION['role'])) {
         </script>
     </div>
 </div>
+
+
+<div class="dashboard-meas" style="width: 1365px; height: 320px">
+    <div class="lineChart-container">
+        <canvas style="margin-left: 20px" id="lineChartSoilTemp" height="85" width="350"></canvas>
+        <script type="text/javascript">
+            let ctxLineSoilTemp = document.getElementById("lineChartSoilTemp");
+            dateArr = '<?php echo json_encode($dateMeas) ?>';
+            let soilTempArr = '<?php echo json_encode($soilTemperatureMeas)?>';
+            splittedArr = [];
+
+            soilTempArr = JSON.parse(soilTempArr);
+            dateArr = JSON.parse(dateArr);
+
+            for (let i = 0; i < dateArr.length; i++) {
+                splittedArr[i] = dateArr[i].split(" ");
+            }
+
+            let myLineChartSoilTemp = new Chart(ctxLineSoilTemp, {
+                type: "line",
+                data: {
+                    labels: [splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
+                    datasets: [{
+                        label: "Soil Temperature",
+                        data: [soilTempArr[0], soilTempArr[1], soilTempArr[2], soilTempArr[3], soilTempArr[4], soilTempArr[5], soilTempArr[6], soilTempArr[7], soilTempArr[8], soilTempArr[9]],
+                        fill: 'origin',
+                        borderColor: "rgb(58,149,78)",
+                        backgroundColor: "rgba(53,101,0,0.15)",
+                        lineTension: 0.15
+                    }]
+                },
+                options: {}
+            });
+        </script>
+    </div>
+</div>
+
+<div class="dashboard-meas" style="width: 1365px; height: 320px">
+    <div class="lineChart-container">
+        <canvas style="margin-left: 20px" id="lineChartSoilHum" height="85" width="350"></canvas>
+        <script type="text/javascript">
+            let ctxLineSoilHum = document.getElementById("lineChartSoilHum");
+            dateArr = '<?php echo json_encode($dateMeas) ?>';
+            let soilHumArr = '<?php echo json_encode($soilHumidityMeas)?>';
+            splittedArr = [];
+
+            soilHumArr = JSON.parse(soilHumArr);
+            dateArr = JSON.parse(dateArr);
+
+            for (let i = 0; i < dateArr.length; i++) {
+                splittedArr[i] = dateArr[i].split(" ");
+            }
+
+            let myLineChartSoilHum = new Chart(ctxLineSoilHum, {
+                type: "line",
+                data: {
+                    labels: [splittedArr[0][1].slice(0, 5), splittedArr[1][1].slice(0, 5), splittedArr[2][1].slice(0, 5), splittedArr[3][1].slice(0, 5), splittedArr[4][1].slice(0, 5), splittedArr[5][1].slice(0, 5), splittedArr[6][1].slice(0, 5), splittedArr[7][1].slice(0, 5), splittedArr[8][1].slice(0, 5), splittedArr[9][1].slice(0, 5)],
+                    datasets: [{
+                        label: "Soil Humidity",
+                        data: [soilHumArr[0], soilHumArr[1], soilHumArr[2], soilHumArr[3], soilHumArr[4], soilHumArr[5], soilHumArr[6], soilHumArr[7], soilHumArr[8], soilHumArr[9]],
+                        fill: 'origin',
+                        borderColor: "rgb(184,205,52)",
+                        backgroundColor: "rgba(208,255,0,0.15)",
+                        lineTension: 0.15
+                    }]
+                },
+                options: {}
+            });
+        </script>
+    </div>
+</div>
+
 </body>
 </html>

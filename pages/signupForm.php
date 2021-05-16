@@ -1,8 +1,8 @@
 <?php
 session_start();
-$servername = "192.168.178.62";
-$username = "login/signup";
-$passwordDB = "Login/SingupUserPassword123!";
+$servername = "10.10.30.2";
+$username = "remoteUser";
+$passwordDB = "remoteUser123!";
 $dbname = "raynDB";
 
 if (isset($_POST['submit'])) {
