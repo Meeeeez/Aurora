@@ -18,7 +18,7 @@ $conn2 = new mysqli("10.10.30.2", "remoteUser", "remoteUser123!", "raynDB");
 if ($conn2->connect_error) {
     die("Connection failed: " . $conn2->connect_error);
 }
-$sql = "SELECT * FROM TWeatherMeasurement ORDER BY measurementID ASC LIMIT 10;";
+$sql = "SELECT * FROM (SELECT * FROM TWeatherMeasurement ORDER BY measurementID DESC LIMIT 10) as lastTen ORDER BY measurementID;";
 $result = $conn2->query($sql);
 $conn2->close();
 if (mysqli_num_rows($result) > 0) {
@@ -42,7 +42,7 @@ if ($conn3->connect_error) {
     die("Connection failed: " . $conn3->connect_error);
 }
 
-$sql = "SELECT * FROM TSoilMeasurement ORDER BY soilMeasurementID ASC LIMIT 10;";
+$sql = "SELECT * FROM ( SELECT * FROM TSoilMeasurement ORDER BY soilMeasurementID DESC LIMIT 10) as lastTen ORDER BY soilMeasurementID;";
 $result = $conn3->query($sql);
 $conn3->close();
 
@@ -79,6 +79,47 @@ if (isset($_SESSION['measUnit'])) {
         $soilTempString = $soilTemperatureMeas[$counter - 1] . "°C";
         $pressString = $pressureMeas[$counter - 1] . "mb";
     }
+}
+
+$conn4 = new mysqli("10.10.30.2", "remoteUser", "remoteUser123!", "raynDB");
+
+if ($conn4->connect_error) {
+    die("Connection failed: " . $conn4->connect_error);
+}
+
+$sql = "select * from TValve order by valveID desc";
+$result = $conn4->query($sql);
+$conn4->close();
+
+if (mysqli_num_rows($result) > 0) {     //get soil data
+    $counter = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        $isValveOn[$counter] = $row["isOn"];
+        $lastChanged[$counter] = $row["dateTime"];
+        $counter++;
+    }
+} else {
+    header("Location: ../pages/error.php");
+}
+
+$conn5 = new mysqli("10.10.30.2", "remoteUser", "remoteUser123!", "raynDB");
+
+if ($conn5->connect_error) {
+    die("Connection failed: " . $conn5->connect_error);
+}
+
+$sql = "select totalOperatingTime from TOperatingTime";
+$result = $conn5->query($sql);
+$conn5->close();
+
+if (mysqli_num_rows($result) > 0) {     //get soil data
+    $counter = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        $totalValveOperatingTime[$counter] = $row["totalOperatingTime"];
+        $counter++;
+    }
+} else {
+    header("Location: ../pages/error.php");
 }
 ?>
 
@@ -481,11 +522,11 @@ if (isset($_SESSION['role'])) {
                                 label: '',
                                 data: [soilHumMeas, 100],
                                 backgroundColor: [
-                                    'rgb(184,205,52)',
+                                    'rgb(52,169,205)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderColor: [
-                                    'rgb(184,205,52)',
+                                    'rgb(52,169,205)',
                                     'rgb(235, 237, 239)',
                                 ],
                                 borderWidth: 1
@@ -498,7 +539,7 @@ if (isset($_SESSION['role'])) {
                             elements: {
                                 center: {
                                     text: soilHumMeas + '%',
-                                    color: 'rgb(184,205,52)', // Default is #000000
+                                    color: 'rgb(52,169,205)', // Default is #000000
                                     fontStyle: 'Calibri', // Default is Arial
                                     sidePadding: 20, // Default is 20 (as a percentage)
                                     minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
@@ -521,13 +562,17 @@ if (isset($_SESSION['role'])) {
 <div id="stationMap" class="map"></div>
 <script type="text/javascript" src="../js/map.js"></script>
 
+<div class="dashboard-meas" style="width: 1365px; height: 100px; background-color: #EBEDEF">
+    <h2 class="station-location" style="font-size: 40px; margin-left: 550px; font-weight: 800;">Last 10 hours</h2>
+</div>
+
 <div class="dashboard-meas" style="width: 1365px; height: 320px">
     <div class="lineChart-container">
         <canvas style="margin-left: 20px" id="lineChartTemp" height="85" width="350"></canvas>
         <script type="text/javascript">
             let ctxLineTemp = document.getElementById("lineChartTemp");
-            let dateArr = '<?php echo json_encode($dateMeas) ?>';
-            let temperatureArr = '<?php echo json_encode($temperatureMeas)?>';
+            let dateArr = '<?php echo json_encode($dateMeas); ?>';
+            let temperatureArr = '<?php echo json_encode($temperatureMeas);?>';
             let splittedArr = [];
 
             temperatureArr = JSON.parse(temperatureArr);
@@ -634,7 +679,6 @@ if (isset($_SESSION['role'])) {
     </div>
 </div>
 
-
 <div class="dashboard-meas" style="width: 1365px; height: 320px">
     <div class="lineChart-container">
         <canvas style="margin-left: 20px" id="lineChartSoilTemp" height="85" width="350"></canvas>
@@ -694,9 +738,82 @@ if (isset($_SESSION['role'])) {
                         label: "Soil Humidity",
                         data: [soilHumArr[0], soilHumArr[1], soilHumArr[2], soilHumArr[3], soilHumArr[4], soilHumArr[5], soilHumArr[6], soilHumArr[7], soilHumArr[8], soilHumArr[9]],
                         fill: 'origin',
-                        borderColor: "rgb(184,205,52)",
-                        backgroundColor: "rgba(208,255,0,0.15)",
+                        borderColor: "rgb(52,169,205)",
+                        backgroundColor: "rgba(52,169,205,0.15)",
                         lineTension: 0.15
+                    }]
+                },
+                options: {}
+            });
+        </script>
+    </div>
+</div>
+
+<div class="dashboard-meas" style="width: 1365px; height: 100px; background-color: #EBEDEF">
+    <h2 class="station-location" style="font-size: 40px; margin-left: 530px; font-weight: 800;">Valve Statistics</h2>
+</div>
+
+<div class="dashboard-meas" style="width: 1365px; height: 130px">
+    <table id="valveStatTable">
+        <tr>
+            <th>Current Status</th>
+            <th>Flow Rate</th>
+            <th>Total Water Consumption</th>
+            <th>Total Operating Time</th>
+        </tr>
+        <tr>
+            <td id="currentValveStatus"></td>
+            <td>0.325 l/s</td>
+            <td id="totalWaterConsumption"></td>
+            <td id="totalOperatingTime"></td>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+        let currentValveStatus = document.getElementById("currentValveStatus");
+        let totalWaterConsumption = document.getElementById("totalWaterConsumption");
+        let totalOperatingTimeLabel = document.getElementById("totalOperatingTime");
+
+        let currentStatus = '<?php echo $isValveOn[0] ?>';
+        let totalOperatingTime = '<?php echo $totalValveOperatingTime[0] ?>';
+
+        totalOperatingTimeLabel.innerHTML = totalOperatingTime.toString();
+        totalWaterConsumption.innerHTML = (totalOperatingTime * .325).toString();
+
+        if(currentStatus === "1") {
+            currentValveStatus.innerHTML = "On";
+        } else if(currentStatus === "0"){
+            currentValveStatus.innerHTML = "Off";
+        }
+    </script>
+
+</div>
+
+<div class="dashboard-meas" style="width: 1365px; height: 320px">
+    <div class="lineChart-container">
+        <canvas style="margin-left: 20px" id="lineChartValve" height="85" width="350"></canvas>
+        <script type="text/javascript">
+            let ctxValve = document.getElementById("lineChartValve");
+            dateArr = '<?php echo json_encode($lastChanged) ?>';
+            let valveStats = '<?php echo json_encode($isValveOn)?>';
+
+            valveStats = JSON.parse(valveStats);
+            dateArr = JSON.parse(dateArr);
+
+            for(var i = 0; i < dateArr.length; i++){
+                dateArr[i].replace(" ", "\n")
+            }
+
+            let myLineChartValve = new Chart(ctxValve, {
+                type: "line",
+                data: {
+                    labels: [dateArr[0], dateArr[1], dateArr[2], dateArr[3], dateArr[4], dateArr[5], dateArr[6], dateArr[7], dateArr[8], dateArr[9]],
+                    datasets: [{
+                        label: "Valve Statistics",
+                        data: [valveStats[0], valveStats[1], valveStats[2], valveStats[3], valveStats[4], valveStats[5], valveStats[6], valveStats[7], valveStats[8], valveStats[9]],
+                        fill: 'origin',
+                        borderColor: "rgb(52,169,205)",
+                        backgroundColor: "rgba(52,169,205,0.15)",
                     }]
                 },
                 options: {}
