@@ -797,11 +797,14 @@ if (isset($_SESSION['role'])) {
             dateArr = '<?php echo json_encode($lastChanged) ?>';
             let valveStats = '<?php echo json_encode($isValveOn)?>';
 
-            valveStats = JSON.parse(valveStats);
-            dateArr = JSON.parse(dateArr);
+            valveStats = JSON.parse(valveStats).reverse();
+            dateArr = JSON.parse(dateArr).reverse();
+
+
 
             for(var i = 0; i < dateArr.length; i++){
-                dateArr[i].replace(" ", "\n")
+                dateArr[i].replace(" ", "\n");
+                valveStats[i].replace("1", ".325");
             }
 
             let myLineChartValve = new Chart(ctxValve, {
@@ -814,6 +817,7 @@ if (isset($_SESSION['role'])) {
                         fill: 'origin',
                         borderColor: "rgb(52,169,205)",
                         backgroundColor: "rgba(52,169,205,0.15)",
+                        steppedLine: true
                     }]
                 },
                 options: {}
